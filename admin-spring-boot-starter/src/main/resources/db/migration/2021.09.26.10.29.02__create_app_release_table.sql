@@ -4,7 +4,7 @@
 
 CREATE TABLE `app_release`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `version` varchar(54) NOT NULL COMMENT '版本名称',
+  `version` varchar(64) NOT NULL COMMENT '版本名称',
   `version_num` integer NOT NULL COMMENT '版本编号',
   `catalog` tinyint NOT NULL COMMENT '类别: 1安卓 2iOS',
   `url` varchar(255) NOT NULL COMMENT '下载地址',
