@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.shield.admin.mapper.AppReleaseMapper">
+
+    <resultMap type="org.shield.admin.model.AppRelease" id="appReleaseMap">
+        <result property="id" column="id"/>
+        <result property="version" column="version"/>
+        <result property="versionNum" column="version_num"/>
+        <result property="catalog" column="catalog"/>
+        <result property="url" column="url"/>
+        <result property="forceUpgrade" column="force_upgrade"/>
+        <result property="description" column="description"/>
+        <result property="hash" column="hash"/>
+        <result property="isActive" column="is_active"/>
+        <result property="isDeleted" column="is_deleted"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+</mapper>
