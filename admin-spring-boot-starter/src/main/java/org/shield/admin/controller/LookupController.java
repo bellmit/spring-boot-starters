@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
  * @author zacksleo@gmail.com
  */
 @Api(tags = "字典对照")
-@RestController
+@RestController("AdminConsoleLookupController")
 @RequestMapping("lookups")
 public class LookupController {
 

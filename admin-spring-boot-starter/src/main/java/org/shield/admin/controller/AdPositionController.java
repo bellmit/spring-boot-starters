@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
  * @author zacksleo@gmail.com
  */
 @Api(tags = "广告位")
-@RestController
+@RestController("AdminConsoleAdPositionController")
 @RequestMapping("ad-positions")
 public class AdPositionController {
 

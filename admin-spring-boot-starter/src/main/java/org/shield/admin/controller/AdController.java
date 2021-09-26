@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiParam;
  * @author zacksleo@gmail.com
  */
 @Api(tags = "广告")
-@RestController
+@RestController("AdminConsoleAdController")
 @RequestMapping("ad-positions/{positionId}/ads")
 public class AdController {
 
