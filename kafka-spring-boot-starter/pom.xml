@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>kafka-spring-boot-starter</artifactId>
-  <version>1.14.0</version>
+  <version>1.14.1</version>
   <name>kafka-spring-boot-starter</name>
   <url>http://maven.apache.org</url>
   <properties>

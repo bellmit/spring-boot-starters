@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>json-spring-boot-starter</artifactId>
-  <version>1.14.0</version>
+  <version>1.14.1</version>
   <name>json-spring-boot-starter</name>
   <dependencies>
     <!-- springboot-json -->

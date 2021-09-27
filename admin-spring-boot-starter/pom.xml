@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>admin-spring-boot-starter</artifactId>
-  <version>1.14.0</version>
+  <version>1.14.1</version>
   <name>通用系统管理模块</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
