@@ -2,9 +2,9 @@
 
 --changeset zacksleo:1.0.0
 
-CREATE TABLE `ad`  (
+CREATE TABLE `banner`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `position_id` int NOT NULL COMMENT '广告位编号',
+  `banner_position_id` char(20) NOT NULL COMMENT '广告位编号',
   `name` varchar(64) NULL DEFAULT '' COMMENT '名称',
   `catalog` tinyint NOT NULL DEFAULT 0 COMMENT '类别: 0图片 1文本 2视频',
   `content` text NOT NULL COMMENT '内容',
@@ -16,9 +16,9 @@ CREATE TABLE `ad`  (
   `create_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_position_id` (`position_id`)
+  INDEX KEY `idx_position_id` (`position_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='广告表';
 
---rollback DROP TABLE IF EXISTS `ad`;
+--rollback DROP TABLE IF EXISTS `banner`;
 
 --comment: 广告表

@@ -17,8 +17,8 @@ import lombok.Data;
  */
 @ApiModel
 @Data
-@Table(name = "`ad`")
-public class Ad {
+@Table(name = "`banner`")
+public class Banner {
 
     /**
      * ID
@@ -32,28 +32,28 @@ public class Ad {
     /**
      * 广告位编号
      */
-    @ApiModelProperty(value = "广告位编号", example = "1", required = true)
-    @Column(name = "`position_id`")
-    private Integer positionId;
+    @ApiModelProperty(value = "广告位编号", example = "app-home-slides", required = true)
+    @Column(name = "`banner_position_id`")
+    private String bannerPositionId;
 
     /**
      * 名称
      */
     @ApiModelProperty(value = "名称", example = "国庆节快乐", required = true)
     @Column(name = "`name`")
-    private Integer name;
+    private String name;
 
     /**
      * 类别: 0图片 1文本 2视频
      */
-    @ApiModelProperty(value = "类别: 0图片 1文本 2视频", example = "1", required = true)
+    @ApiModelProperty(value = "类别: 0图片 1文本 2视频", example = "0", required = true)
     @Column(name = "`catalog`")
     private Integer catalog;
 
     /**
      * 广告内容
      */
-    @ApiModelProperty(value = "广告内容", example = "http://ad.com/ad.png", required = false)
+    @ApiModelProperty(value = "广告内容", example = "http://banner.com/banner.png", required = false)
     @Column(name = "`content`")
     @NotNull(message = "广告内容不能为空")
     private String content;

@@ -1,6 +1,6 @@
 package org.shield.admin.mapper;
 
-import org.shield.admin.model.AdPosition;
+import org.shield.admin.model.Banner;
 import org.shield.mybatis.mapper.Mapper;
 
 /**
@@ -8,5 +8,5 @@ import org.shield.mybatis.mapper.Mapper;
  *
  * @author zacksleo@gmail.com
  */
-public interface AdPositionMapper extends Mapper<AdPosition> {
+public interface BannerMapper extends Mapper<Banner> {
 }

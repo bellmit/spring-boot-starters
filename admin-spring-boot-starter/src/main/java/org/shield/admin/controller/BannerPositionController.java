@@ -5,9 +5,9 @@ import javax.validation.Valid;
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 
-import org.shield.admin.form.AdQueryForm;
-import org.shield.admin.model.Ad;
-import org.shield.admin.service.AdService;
+import org.shield.admin.model.BannerPosition;
+import org.shield.admin.service.BannerPositionService;
+import org.shield.mybatis.form.PageableQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 
 /**
  *
@@ -30,46 +29,44 @@ import io.swagger.annotations.ApiParam;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "广告")
-@RestController("AdminConsoleAdController")
-@RequestMapping("ad-positions/{positionId}/ads")
-public class AdController {
+@Api(tags = "广告位")
+@RestController("AdminConsoleBannerPositionController")
+@RequestMapping("banner-positions")
+public class BannerPositionController {
 
     @Autowired
-    private AdService service;
+    private BannerPositionService service;
 
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Ad create(@ApiParam("广告位编号") @PathVariable("positionId") Integer positionId, @Valid @RequestBody Ad form) {
-        form.setPositionId(positionId);
+    public BannerPosition create(@Valid @RequestBody BannerPosition form) {
         return service.create(form);
     }
 
     @ApiOperation("删除")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{bannerPositionId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id) {
-        service.deleteById(id);
+    public void delete(@PathVariable String bannerPositionId) {
+        service.deleteById(bannerPositionId);
     }
 
     @ApiOperation("查询")
     @GetMapping
-    public PageInfo<Ad> list(AdQueryForm form) {
+    public PageInfo<BannerPosition> list(PageableQuery form) {
         PageMethod.startPage(form);
-        return new PageInfo<>(service.list(form));
+        return new PageInfo<>(service.list());
     }
 
     @ApiOperation("更新")
-    @PutMapping("/{id}")
-    public Ad update(@PathVariable("id") Integer id, @RequestBody Ad form) {
-        form.setId(id);
-        return service.update(form);
+    @PutMapping("/{bannerPositionId}")
+    public BannerPosition update(@PathVariable("bannerPositionId") String bannerPositionId, @RequestBody BannerPosition form) {
+        return service.update(bannerPositionId, form);
     }
 
     @ApiOperation("详情")
-    @GetMapping("/{id}")
-    public Ad view(@PathVariable Integer id) {
-        return service.findById(id);
+    @GetMapping("/{bannerPositionId}")
+    public BannerPosition view(@PathVariable String bannerPositionId) {
+        return service.findById(bannerPositionId);
     }
 }

@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.shield.mybatis.plugin.LogicId;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -17,17 +19,25 @@ import lombok.Data;
  */
 @ApiModel
 @Data
-@Table(name = "`ad_position`")
-public class AdPosition {
+@Table(name = "`banner_position`")
+public class BannerPosition {
 
     /**
      * ID
      */
     @Id
     @GeneratedValue(generator = "JDBC")
-    @ApiModelProperty("ID")
+    @ApiModelProperty(value = "ID", hidden = true)
     @Column(name = "`id`")
     private Integer id;
+
+    /**
+     * 广告位编号
+     */
+    @ApiModelProperty(value = "广告位编号", example = "app-home-slides", required = true)
+    @Column(name = "`banner_position_id`")
+    @LogicId(prefix = "BANP")
+    private String bannerPositionId;
 
     /**
      * 名称
@@ -35,13 +45,6 @@ public class AdPosition {
     @ApiModelProperty(value = "名称", example = "首页banner", required = true)
     @Column(name = "`name`")
     private String name;
-
-    /**
-     * 标识
-     */
-    @ApiModelProperty(value = "标识", example = "home-banner", required = true)
-    @Column(name = "`slug`")
-    private String slug;
 
     /**
      * 尺寸

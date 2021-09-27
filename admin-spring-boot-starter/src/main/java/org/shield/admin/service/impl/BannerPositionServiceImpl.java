@@ -2,8 +2,8 @@ package org.shield.admin.service.impl;
 
 import java.util.List;
 
-import org.shield.admin.model.AdPosition;
-import org.shield.admin.service.AdPositionService;
+import org.shield.admin.model.BannerPosition;
+import org.shield.admin.service.BannerPositionService;
 import org.shield.crud.service.AbstractService;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
  * @author zacksleo@gmail.com
  */
 @Service
-public class AdPositionServiceImpl extends AbstractService<AdPosition> implements AdPositionService {
+public class BannerPositionServiceImpl extends AbstractService<BannerPosition> implements BannerPositionService {
 
     @Override
-    public List<AdPosition> list() {
+    public List<BannerPosition> list() {
         return findAll();
     }
 }

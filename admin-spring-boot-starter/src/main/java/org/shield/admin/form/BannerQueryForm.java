@@ -1,6 +1,6 @@
 package org.shield.admin.form;
 
-import org.shield.admin.model.Ad;
+import org.shield.admin.model.Banner;
 import org.shield.mybatis.form.PageableQuery;
 
 import io.swagger.annotations.ApiModel;
@@ -16,13 +16,13 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 @ApiModel
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class AdQueryForm extends PageableQuery {
+public class BannerQueryForm extends PageableQuery {
 
     /**
      * 广告位编号
      */
-    @ApiModelProperty(value = "广告位编号", example = "1", required = true)
-    private Integer positionId;
+    @ApiModelProperty(value = "广告位编号", example = "app-home-slides", required = true)
+    private String bannerPositionId;
 
     /**
      * 名称
@@ -43,9 +43,9 @@ public class AdQueryForm extends PageableQuery {
     private Boolean isActive;
 
     public Condition toCondition() {
-        Condition condition = new Condition(Ad.class);
+        Condition condition = new Condition(Banner.class);
         Criteria criteria = condition.createCriteria();
-        criteria.andEqualTo("positionId", getPositionId());
+        criteria.andEqualTo("bannerPositionId", getBannerPositionId());
         criteria.andEqualTo("name", getName());
         criteria.andEqualTo("catalog", getCatalog());
         criteria.andEqualTo("isActive", getIsActive());
