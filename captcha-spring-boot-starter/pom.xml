@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>spring-boot-starters</artifactId>
-    <version>1.14.0</version>
+    <version>1.14.1</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>captcha-spring-boot-starter</artifactId>
