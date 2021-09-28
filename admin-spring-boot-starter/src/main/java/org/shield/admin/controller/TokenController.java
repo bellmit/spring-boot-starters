@@ -11,8 +11,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 
-import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
-
 /**
  * 令牌
  *
@@ -35,7 +33,6 @@ public class TokenController {
     @ApiOperation("获取令牌")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    @LogRecordAnnotation(success="登陆", category = "LOGIN", bizNo="{{#form.username}}", operator = "{{#form.username}}", prefix = "LOGIN")
     public TokenVo create(@Valid @RequestBody PasswordLoginForm form) throws Exception {
         return service.create(form);
     }
