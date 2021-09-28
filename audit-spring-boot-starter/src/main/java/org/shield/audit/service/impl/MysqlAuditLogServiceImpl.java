@@ -9,6 +9,7 @@ import com.mzt.logapi.beans.LogRecord;
 import com.mzt.logapi.service.ILogRecordService;
 
 import org.shield.audit.model.AuditLog;
+import org.shield.audit.util.ServletRequestUtil;
 import org.shield.audit.mapper.AuditLogMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,7 +31,9 @@ public class MysqlAuditLogServiceImpl implements ILogRecordService {
         model.setTenant(logRecord.getTenant());
         model.setModule(logRecord.getBizKey());
         model.setBizNo(logRecord.getBizNo());
-        model.setOperatorName(logRecord.getOperator());
+        model.setOperatorId(ServletRequestUtil.getHeader("userId", logRecord.getOperator()));
+        model.setOperatorName(ServletRequestUtil.getHeader("userName", logRecord.getOperator()));
+        ;
         model.setAction(logRecord.getAction());
         model.setCatalog(logRecord.getCategory());
         model.setRemark(logRecord.getDetail());

@@ -8,6 +8,8 @@ import org.shield.admin.form.AdminQueryForm;
 import org.shield.admin.service.AdminService;
 import org.shield.admin.service.PermissionService;
 import com.github.pagehelper.PageInfo;
+import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
+
 import org.shield.validation.validator.annotation.OnCreate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +37,7 @@ public class AdminController {
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
+    @LogRecordAnnotation(success="创建", category = "管理员", bizNo="{{#_ret.adminId}}", prefix = "")
     public Admin create(@Validated(OnCreate.class) @RequestBody AdminForm admin) {
         return service.create(admin);
     }
