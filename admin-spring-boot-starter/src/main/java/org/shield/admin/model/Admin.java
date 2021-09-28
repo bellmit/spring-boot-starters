@@ -18,12 +18,7 @@ import tk.mybatis.mapper.annotation.LogicDelete;
 @Data
 @ApiModel("管理员")
 @Table(name = "admin")
-public class Admin implements Serializable {
-
-    /**
-    *
-    */
-    private static final long serialVersionUID = -8159325108572527912L;
+public class Admin {
 
     /**
      * ID
@@ -98,7 +93,7 @@ public class Admin implements Serializable {
         User appUser = new AdminUser();
         appUser.setName(getName());
         appUser.setUserId(getAdminId());
-        appUser.setUid(new Long(getId()));
+        appUser.setUid(Long.valueOf(getId()));
         return appUser;
     }
 }

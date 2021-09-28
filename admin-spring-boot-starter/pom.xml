@@ -75,11 +75,10 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-autoconfigure</artifactId>
     </dependency>
-    <!-- 通过操作日志 -->
+    <!-- 通用操作日志 -->
     <dependency>
       <groupId>io.github.mouzt</groupId>
       <artifactId>bizlog-sdk</artifactId>
-      <version>1.0.8</version>
     </dependency>
   </dependencies>
 </project>

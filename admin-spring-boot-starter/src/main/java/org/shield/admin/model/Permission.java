@@ -2,7 +2,6 @@ package org.shield.admin.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -20,12 +19,7 @@ import tk.mybatis.mapper.annotation.LogicDelete;
 @Data
 @ApiModel
 @Table(name = "`permission`")
-public class Permission implements Serializable {
-
-    /**
-    *
-    */
-    private static final long serialVersionUID = 1454017193401598802L;
+public class Permission {
 
     /**
      * ID
