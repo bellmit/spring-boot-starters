@@ -70,7 +70,7 @@ lint:
 	@ $(MVN) checkstyle:check & $(MVN) pmd:check
 
 new:
-	@ $(MVN) archetype:generate -DgroupId=com.geely.iot -DartifactId=${module}
+	@ $(MVN) archetype:generate -DgroupId=org.shield -DartifactId=${module}
 
 checkstyle:
 	@ $(MVN) checkstyle:check
