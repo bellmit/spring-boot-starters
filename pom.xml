@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -25,10 +25,12 @@
   <modules>
     <module>admin-spring-boot-starter</module>
     <module>app-spring-boot-starter</module>
+    <module>audit-spring-boot-starter</module>
     <module>captcha-spring-boot-starter</module>
     <module>crud-spring-boot-starter</module>
     <module>json-spring-boot-starter</module>
     <module>kafka-spring-boot-starter</module>
+    <module>mongo-spring-boot-starter</module>
     <module>mybatis-spring-boot-starter</module>
     <module>redis-spring-boot-starter</module>
     <module>rest-spring-boot-starter</module>
@@ -59,6 +61,18 @@
         <artifactId>hutool-captcha</artifactId>
         <version>${hutool.version}</version>
       </dependency>
+      <!-- 通用操作日志 -->
+      <dependency>
+        <groupId>io.github.mouzt</groupId>
+        <artifactId>bizlog-sdk</artifactId>
+        <version>1.0.8</version>
+      </dependency>
+      <!-- 日志审计 -->
+      <dependency>
+        <groupId>org.shield</groupId>
+        <artifactId>audit-spring-boot-starter</artifactId>
+        <version>1.14.1</version>
+      </dependency>
       <!-- 验证码常用组件 -->
       <dependency>
         <groupId>org.shield</groupId>
@@ -75,6 +89,12 @@
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>kafka-spring-boot-starter</artifactId>
+        <version>1.14.1</version>
+      </dependency>
+      <!-- Mongo -->
+      <dependency>
+        <groupId>org.shield</groupId>
+        <artifactId>mongo-spring-boot-starter</artifactId>
         <version>1.14.1</version>
       </dependency>
       <!-- Mybatis公用依赖 -->
