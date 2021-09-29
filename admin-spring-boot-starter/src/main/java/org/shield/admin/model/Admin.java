@@ -2,7 +2,6 @@ package org.shield.admin.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
