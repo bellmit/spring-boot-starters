@@ -2,16 +2,12 @@ package org.shield.audit.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,7 +25,7 @@ public class AuditLog {
      * 租户标识
      */
     @ApiModelProperty(value = "租户标识", example = "org.shield.admin")
-    @Column(name = "`tenant`")
+    @Field(name = "`tenant`")
     @Indexed
     private String tenant;
 
@@ -37,7 +33,7 @@ public class AuditLog {
      * 业务模块
      */
     @ApiModelProperty(value = "业务模块", example = "ORDER")
-    @Column(name = "`module`")
+    @Field(name = "`module`")
     @NotBlank(message = "业务模块不能为空")
     @Length(max = 128, message = "业务模块最长为128")
     @Indexed
@@ -47,7 +43,7 @@ public class AuditLog {
      * 业务编号
      */
     @ApiModelProperty(value = "业务编号", example = "ODER140477CEA9821000")
-    @Column(name = "`biz_no`")
+    @Field(name = "`biz_no`")
     @Indexed
     private String bizNo;
 
@@ -55,7 +51,7 @@ public class AuditLog {
      * 动作
      */
     @ApiModelProperty(value = "动作", example = "发货")
-    @Column(name = "`action`")
+    @Field(name = "`action`")
     @NotBlank(message = "动作不能为空")
     @Length(max = 128, message = "动作最长不能为128")
     private String action;
@@ -64,7 +60,7 @@ public class AuditLog {
      * 种类
      */
     @ApiModelProperty(value = "种类", example = "订单管理")
-    @Column(name = "`catalog`")
+    @Field(name = "`catalog`")
     @Indexed
     private String catalog;
 
@@ -72,7 +68,7 @@ public class AuditLog {
      * 操作人编号
      */
     @ApiModelProperty(value = "操作人编号", example = "ADMI13EBB25728C21000")
-    @Column(name = "`operator_id`")
+    @Field(name = "`operator_id`")
     @NotBlank(message = "操作人编号不能为空")
     @Length(max = 64, message = "操作人编号最长为64")
     @Indexed
@@ -82,7 +78,7 @@ public class AuditLog {
      * 操作人名称
      */
     @ApiModelProperty(value = "操作人名称", example = "ADMI13EBB25728C21000")
-    @Column(name = "`operator_name`")
+    @Field(name = "`operator_name`")
     @NotBlank(message = "操作人名称不能为空")
     @Length(max = 64, message = "操作人名称最长为64")
     @Indexed
@@ -92,20 +88,20 @@ public class AuditLog {
      * 详细信息
      */
     @ApiModelProperty(value = "详细信息", example = "更新了订单ODER140477CEA9821000,更新内容为...")
-    @Column(name = "`remark`")
+    @Field(name = "`remark`")
     private String remark;
 
     /**
      * 记录时间
      */
     @ApiModelProperty(value = "记录时间", example = "2021-09-26 10:57:24", dataType = "date")
-    @Column(name = "`recordTime`")
+    @Field(name = "`recordTime`")
     private Date recordTime;
 
     /**
      * 创建时间
      */
     @ApiModelProperty(value = "创建时间", example = "2021-09-26 10:57:24", dataType = "date")
-    @Column(name = "`create_time`")
+    @Field(name = "`create_time`")
     private Date createTime;
 }

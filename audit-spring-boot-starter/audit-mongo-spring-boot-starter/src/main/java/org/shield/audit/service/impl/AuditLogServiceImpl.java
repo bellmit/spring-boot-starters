@@ -5,16 +5,18 @@ import java.util.List;
 
 import com.mzt.logapi.beans.LogRecord;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.repository.support.PageableExecutionUtils;
-import org.shield.audit.common.model.AuditLog;
+import org.springframework.stereotype.Service;
+import org.shield.audit.model.AuditLog;
 import org.shield.audit.form.AuditLogQueryForm;
 import org.shield.audit.repository.AuditLogRepository;
 import org.shield.audit.service.AuditLogService;
 import org.shield.audit.util.ServletRequestUtil;
-import com.github.pagehelper.PageInfo;
+import org.shield.mongo.domain.PageInfo;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author zacksleo <zacksleo@gmail.com>
  */
 @Service
-public class MongoAuditLogServiceImpl implements AuditLogService {
+public class AuditLogServiceImpl implements AuditLogService {
 
     @Autowired
     private AuditLogRepository repository;
@@ -61,16 +63,9 @@ public class MongoAuditLogServiceImpl implements AuditLogService {
         }
         query.with(request);
 
-        List<AuditLog> list = mongoTemplate.find(query, AuditLog.class, "audit_log");
-        org.shield.mongo.domain.PageInfo<AuditLog> pageInfo = org.shield.mongo.domain.PageInfo.of(PageableExecutionUtils
-                .getPage(list, request, () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), AuditLog.class)));
-
-        PageInfo<AuditLog> page = new PageInfo<>(list);
-        page.setTotal(pageInfo.getTotal());
-        page.setPageSize(pageInfo.getPageSize());
-        page.setPageNum(pageInfo.getPageNum());
-        page.calcByNavigatePages(page.getNavigatePages());
-        return page;
+        List<AuditLog> list = mongoTemplate.find(query, AuditLog.class);
+        return PageInfo.of(PageableExecutionUtils.getPage(list, request,
+                () -> mongoTemplate.count(Query.of(query).limit(-1).skip(-1), AuditLog.class)));
     }
 
     @Override

@@ -7,11 +7,13 @@ import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 import com.mzt.logapi.beans.LogRecord;
 
-import org.shield.audit.common.model.AuditLog;
+import org.shield.audit.model.AuditLog;
 import org.shield.audit.form.AuditLogQueryForm;
 import org.shield.audit.mapper.AuditLogMapper;
 import org.shield.audit.service.AuditLogService;
 import org.shield.audit.util.ServletRequestUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

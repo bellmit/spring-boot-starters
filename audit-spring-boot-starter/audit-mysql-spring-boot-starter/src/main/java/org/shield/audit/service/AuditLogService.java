@@ -1,9 +1,9 @@
 package org.shield.audit.service;
 
+import com.github.pagehelper.PageInfo;
 import com.mzt.logapi.service.ILogRecordService;
 
 import org.shield.audit.model.AuditLog;
-import org.shield.mongo.domain.PageInfo;
 import org.shield.audit.form.AuditLogQueryForm;
 
 /**

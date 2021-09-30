@@ -1,6 +1,6 @@
 package org.shield.audit.repository;
 
-import org.shield.audit.mongo.model.MongoAuditLog;
+import org.shield.audit.model.AuditLog;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -11,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.mongodb.core.index.Indexed;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -40,7 +39,6 @@ public class AuditLog {
      */
     @ApiModelProperty(value = "租户标识", example = "org.shield.admin")
     @Column(name = "`tenant`")
-    @Indexed
     private String tenant;
 
     /**
@@ -50,7 +48,6 @@ public class AuditLog {
     @Column(name = "`module`")
     @NotBlank(message = "业务模块不能为空")
     @Length(max = 128, message = "业务模块最长为128")
-    @Indexed
     private String module;
 
     /**
@@ -58,7 +55,6 @@ public class AuditLog {
      */
     @ApiModelProperty(value = "业务编号", example = "ODER140477CEA9821000")
     @Column(name = "`biz_no`")
-    @Indexed
     private String bizNo;
 
     /**
@@ -75,7 +71,6 @@ public class AuditLog {
      */
     @ApiModelProperty(value = "种类", example = "订单管理")
     @Column(name = "`catalog`")
-    @Indexed
     private String catalog;
 
     /**
@@ -85,7 +80,6 @@ public class AuditLog {
     @Column(name = "`operator_id`")
     @NotBlank(message = "操作人编号不能为空")
     @Length(max = 64, message = "操作人编号最长为64")
-    @Indexed
     private String operatorId;
 
     /**
@@ -95,7 +89,6 @@ public class AuditLog {
     @Column(name = "`operator_name`")
     @NotBlank(message = "操作人名称不能为空")
     @Length(max = 64, message = "操作人名称最长为64")
-    @Indexed
     private String operatorName;
 
     /**

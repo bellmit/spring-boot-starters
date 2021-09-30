@@ -37,7 +37,7 @@ public class AdminController {
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    @LogRecordAnnotation(success="创建", category = "管理员", bizNo="{{#_ret.adminId}}", prefix = "")
+    @LogRecordAnnotation(success="创建", category = "管理员", bizNo="{{#ret.adminId}}", prefix = "", detail = "#ret")
     public Admin create(@Validated(OnCreate.class) @RequestBody AdminForm admin) {
         return service.create(admin);
     }

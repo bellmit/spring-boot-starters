@@ -9,9 +9,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -39,7 +36,6 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "IP地址", example = "183.6.7.210")
     @Column(name = "`ip`")
-    @Indexed
     private String ip;
 
     /**
@@ -47,7 +43,6 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "位置", example = "河北省 衡水市")
     @Column(name = "`location`")
-    @Indexed
     private String location;
 
     /**
@@ -55,7 +50,6 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "浏览器", example = "Chrome 91")
     @Column(name = "`browser`")
-    @Indexed
     private String browser;
 
     /**
@@ -63,7 +57,6 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "操作系统", example = "Windows 10")
     @Column(name = "`os`")
-    @Indexed
     private String os;
 
     /**
@@ -92,7 +85,6 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "操作人编号", example = "ADMI13EBB25728C21000")
     @Column(name = "`operator_id`")
-    @Indexed
     private String operatorId;
 
     /**
@@ -100,7 +92,6 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "操作人名称", example = "ADMI13EBB25728C21000")
     @Column(name = "`operator_name`")
-    @Indexed
     private String operatorName;
 
     /**

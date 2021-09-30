@@ -2,11 +2,11 @@ package org.shield.audit.controller;
 
 import javax.validation.Valid;
 
+import com.github.pagehelper.PageInfo;
 
 import org.shield.audit.model.AuditLog;
 import org.shield.audit.form.AuditLogQueryForm;
 import org.shield.audit.service.AuditLogService;
-import org.shield.mongo.domain.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

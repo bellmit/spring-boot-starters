@@ -1,6 +1,6 @@
 package org.shield.audit.mapper;
 
-import org.shield.audit.common.model.AccessLog;
+import org.shield.audit.model.AccessLog;
 import org.shield.mybatis.mapper.Mapper;
 
 /**

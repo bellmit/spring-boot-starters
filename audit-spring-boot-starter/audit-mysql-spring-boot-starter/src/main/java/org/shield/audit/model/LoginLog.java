@@ -11,8 +11,6 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,7 +39,6 @@ public class LoginLog {
      */
     @ApiModelProperty(value = "租户标识", example = "org.shield.admin", required = true)
     @Column(name = "`tenant`")
-    @Indexed
     private String tenant;
 
     /**
@@ -49,7 +46,6 @@ public class LoginLog {
      */
     @ApiModelProperty(value = "IP地址", example = "183.6.7.210")
     @Column(name = "`ip`")
-    @Indexed
     private String ip;
 
     /**
@@ -57,7 +53,6 @@ public class LoginLog {
      */
     @ApiModelProperty(value = "位置", example = "河北省 衡水市")
     @Column(name = "`location`")
-    @Indexed
     private String location;
 
     /**
@@ -65,7 +60,6 @@ public class LoginLog {
      */
     @ApiModelProperty(value = "浏览器", example = "Chrome 91")
     @Column(name = "`browser`")
-    @Indexed
     private String browser;
 
     /**
@@ -73,7 +67,6 @@ public class LoginLog {
      */
     @ApiModelProperty(value = "操作系统", example = "Windows 10")
     @Column(name = "`os`")
-    @Indexed
     private String os;
 
     /**
@@ -81,7 +74,6 @@ public class LoginLog {
      */
     @ApiModelProperty(value = "类别", example = "订单管理")
     @Column(name = "`catalog`")
-    @Indexed
     private String catalog;
 
     /**
@@ -91,7 +83,6 @@ public class LoginLog {
     @Column(name = "`operator_id`")
     @NotBlank(message = "操作人编号不能为空")
     @Length(max = 64, message = "操作人编号最长为64")
-    @Indexed
     private String operatorId;
 
     /**
@@ -101,7 +92,6 @@ public class LoginLog {
     @Column(name = "`operator_name`")
     @NotBlank(message = "操作人名称不能为空")
     @Length(max = 64, message = "操作人名称最长为64")
-    @Indexed
     private String operatorName;
 
     /**
