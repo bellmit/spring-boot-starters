@@ -11,4 +11,9 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface EnableAuditLog {
+
+    /**
+     * 模块
+     */
+    String module() default "";
 }
