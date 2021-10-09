@@ -3,6 +3,8 @@ package org.shield.audit.service.impl;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 import com.mzt.logapi.beans.LogRecord;
@@ -10,7 +12,9 @@ import com.mzt.logapi.beans.LogRecord;
 import org.shield.audit.annotation.EnableAuditLog;
 import org.shield.audit.form.AuditLogQueryForm;
 import org.shield.audit.mapper.AuditLogMapper;
+import org.shield.audit.mapper.LoginLogMapper;
 import org.shield.audit.model.AuditLog;
+import org.shield.audit.model.LoginLog;
 import org.shield.audit.service.AuditLogService;
 import org.shield.audit.util.ServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +27,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import cn.hutool.extra.servlet.ServletUtil;
+import cn.hutool.http.useragent.UserAgent;
+import cn.hutool.http.useragent.UserAgentUtil;
 import lombok.extern.slf4j.Slf4j;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example.Criteria;
@@ -34,13 +41,19 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 @Slf4j
 public class MysqlAuditLogServiceImpl implements AuditLogService, ImportAware {
 
-    @Autowired
-    private AuditLogMapper auditLogMapper;
-
     private AnnotationAttributes enableAuditLog;
 
     @Value("${spring.application.name:''}")
     private String applicationName;
+
+    @Autowired
+    private AuditLogMapper auditLogMapper;
+
+    @Autowired
+    private LoginLogMapper loginLogMapper;
+
+    @Autowired
+    private HttpServletRequest request;
 
     @Override
     public AuditLog create(AuditLog model) {
@@ -70,6 +83,27 @@ public class MysqlAuditLogServiceImpl implements AuditLogService, ImportAware {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void record(LogRecord logRecord) {
+        if ("LOGIN".equals(logRecord.getCategory())) {
+            saveLoginLog(logRecord);
+        } else {
+            saveAuditLog(logRecord);
+        }
+    }
+
+    private void saveLoginLog(LogRecord logRecord) {
+        LoginLog model = new LoginLog();
+        UserAgent ua = UserAgentUtil.parse(ServletUtil.getHeader(request, "User-Agent", "UTF-8"));
+        model.setTenant(logRecord.getTenant());
+        model.setUsername(logRecord.getBizNo());
+        model.setIp(ServletUtil.getClientIP(request));
+        model.setBrowser(ua.getBrowser().toString() + " " + ua.getVersion());
+        model.setOs(ua.getOs().toString());
+        model.setRemark(logRecord.getAction());
+        model.setRecordTime(logRecord.getCreateTime());
+        loginLogMapper.insertSelective(model);
+    }
+
+    private void saveAuditLog(LogRecord logRecord) {
         AuditLog model = new AuditLog();
         model.setTenant(logRecord.getTenant());
         model.setModule(getModule());

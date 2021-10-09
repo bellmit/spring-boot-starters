@@ -6,11 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import org.hibernate.validator.constraints.Length;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -70,29 +67,11 @@ public class LoginLog {
     private String os;
 
     /**
-     * 类别
+     * 用户名
      */
-    @ApiModelProperty(value = "类别", example = "订单管理")
-    @Column(name = "`catalog`")
-    private String catalog;
-
-    /**
-     * 操作人编号
-     */
-    @ApiModelProperty(value = "操作人编号", example = "ADMI13EBB25728C21000")
-    @Column(name = "`operator_id`")
-    @NotBlank(message = "操作人编号不能为空")
-    @Length(max = 64, message = "操作人编号最长为64")
-    private String operatorId;
-
-    /**
-     * 操作人名称
-     */
-    @ApiModelProperty(value = "操作人名称", example = "ADMI13EBB25728C21000")
-    @Column(name = "`operator_name`")
-    @NotBlank(message = "操作人名称不能为空")
-    @Length(max = 64, message = "操作人名称最长为64")
-    private String operatorName;
+    @ApiModelProperty(value = "用户名", example = "ADMI13EBB25728C21000")
+    @Column(name = "`username`")
+    private String username;
 
     /**
      * 备注
