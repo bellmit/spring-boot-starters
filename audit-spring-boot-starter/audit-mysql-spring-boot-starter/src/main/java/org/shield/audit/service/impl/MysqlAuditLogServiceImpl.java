@@ -7,16 +7,23 @@ import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
 import com.mzt.logapi.beans.LogRecord;
 
-import org.shield.audit.model.AuditLog;
+import org.shield.audit.annotation.EnableAuditLog;
 import org.shield.audit.form.AuditLogQueryForm;
 import org.shield.audit.mapper.AuditLogMapper;
+import org.shield.audit.model.AuditLog;
 import org.shield.audit.service.AuditLogService;
 import org.shield.audit.util.ServletRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ImportAware;
+import org.springframework.core.annotation.AnnotationAttributes;
+import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
+import lombok.extern.slf4j.Slf4j;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example.Criteria;
 
@@ -24,10 +31,16 @@ import tk.mybatis.mapper.entity.Example.Criteria;
  * @author zacksleo <zacksleo@gmail.com>
  */
 @Service
-public class MysqlAuditLogServiceImpl implements AuditLogService {
+@Slf4j
+public class MysqlAuditLogServiceImpl implements AuditLogService, ImportAware {
 
     @Autowired
     private AuditLogMapper auditLogMapper;
+
+    private AnnotationAttributes enableAuditLog;
+
+    @Value("${spring.application.name:''}")
+    private String applicationName;
 
     @Override
     public AuditLog create(AuditLog model) {
@@ -59,16 +72,15 @@ public class MysqlAuditLogServiceImpl implements AuditLogService {
     public void record(LogRecord logRecord) {
         AuditLog model = new AuditLog();
         model.setTenant(logRecord.getTenant());
-        model.setModule(logRecord.getBizKey());
+        model.setModule(getModule());
         model.setBizNo(logRecord.getBizNo());
-        model.setOperatorId(ServletRequestUtil.getHeader("userId", logRecord.getOperator()));
-        model.setOperatorName(ServletRequestUtil.getHeader("userName", logRecord.getOperator()));
-        ;
+        model.setOperatorId(ServletRequestUtil.getHeader("auth-userId"));
+        model.setOperatorName(ServletRequestUtil.getHeader("auth-userName"));
         model.setAction(logRecord.getAction());
         model.setCatalog(logRecord.getCategory());
         model.setRemark(logRecord.getDetail());
         model.setRecordTime(logRecord.getCreateTime());
-        auditLogMapper.insert(model);
+        auditLogMapper.insertSelective(model);
     }
 
     @Override
@@ -79,5 +91,24 @@ public class MysqlAuditLogServiceImpl implements AuditLogService {
     @Override
     public List<LogRecord> queryLogByBizNo(String bizNo) {
         return Collections.emptyList();
+    }
+
+    @Override
+    public void setImportMetadata(AnnotationMetadata importMetadata) {
+        this.enableAuditLog = AnnotationAttributes
+                .fromMap(importMetadata.getAnnotationAttributes(EnableAuditLog.class.getName(), false));
+        if (this.enableAuditLog == null) {
+            log.info("@EnableCaching is not present on importing class");
+        }
+    }
+
+    private String getModule() {
+        if (this.enableAuditLog == null) {
+            return applicationName;
+        }
+        if (StringUtils.hasText(this.enableAuditLog.getString("module"))) {
+            return this.enableAuditLog.getString("module");
+        }
+        return applicationName;
     }
 }

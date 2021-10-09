@@ -105,7 +105,7 @@ public class AccessLog {
      * 记录时间
      */
     @ApiModelProperty(value = "记录时间", example = "2021-09-26 10:57:24", dataType = "date")
-    @Column(name = "`recordTime`")
+    @Column(name = "`record_time`")
     private Date recordTime;
 
     /**
