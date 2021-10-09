@@ -14,8 +14,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-     <!-- Spring Web Service -->
-     <dependency>
+    <!-- Spring Web Service -->
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
@@ -27,6 +27,18 @@
     <dependency>
       <groupId>io.github.mouzt</groupId>
       <artifactId>bizlog-sdk</artifactId>
+    </dependency>
+    <!-- hutool -->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-http</artifactId>
+      <version>${hutool.version}</version>
+    </dependency>
+    <!-- hutool -->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-extra</artifactId>
+      <version>${hutool.version}</version>
     </dependency>
   </dependencies>
 </project>

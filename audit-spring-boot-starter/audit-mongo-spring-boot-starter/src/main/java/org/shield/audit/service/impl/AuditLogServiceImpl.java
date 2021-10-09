@@ -3,6 +3,8 @@ package org.shield.audit.service.impl;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.mzt.logapi.beans.LogRecord;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Service;
 import org.shield.audit.model.AuditLog;
+import org.shield.audit.model.LoginLog;
 import org.shield.audit.annotation.EnableAuditLog;
 import org.shield.audit.form.AuditLogQueryForm;
 import org.shield.audit.repository.AuditLogRepository;
+import org.shield.audit.repository.LoginLogRepository;
 import org.shield.audit.service.AuditLogService;
 import org.shield.audit.util.ServletRequestUtil;
 import org.shield.mongo.domain.PageInfo;
@@ -27,6 +31,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
+
+import cn.hutool.extra.servlet.ServletUtil;
+import cn.hutool.http.useragent.UserAgent;
+import cn.hutool.http.useragent.UserAgentUtil;
 
 /**
  * @author zacksleo <zacksleo@gmail.com>
@@ -41,14 +49,20 @@ public class AuditLogServiceImpl implements AuditLogService, ImportAware {
     private String applicationName;
 
     @Autowired
-    private AuditLogRepository repository;
+    private AuditLogRepository auditLogRepository;
+
+    @Autowired
+    private LoginLogRepository loginLogRepository;
 
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @Override
     public AuditLog create(AuditLog model) {
-        return repository.save(model);
+        return auditLogRepository.save(model);
     }
 
     @Override
@@ -85,6 +99,27 @@ public class AuditLogServiceImpl implements AuditLogService, ImportAware {
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void record(LogRecord logRecord) {
+        if ("LOGIN".equals(logRecord.getCategory())) {
+            saveLoginLog(logRecord);
+        } else {
+            saveAuditLog(logRecord);
+        }
+    }
+
+    private void saveLoginLog(LogRecord logRecord) {
+        LoginLog model = new LoginLog();
+        UserAgent ua = UserAgentUtil.parse(ServletUtil.getHeader(request, "User-Agent", "UTF-8"));
+        model.setTenant(logRecord.getTenant());
+        model.setUsername(logRecord.getBizNo());
+        model.setIp(ServletUtil.getClientIP(request));
+        model.setBrowser(ua.getBrowser().toString() + " " + ua.getVersion());
+        model.setOs(ua.getOs().toString());
+        model.setRemark(logRecord.getAction());
+        model.setRecordTime(logRecord.getCreateTime());
+        loginLogRepository.save(model);
+    }
+
+    private void saveAuditLog(LogRecord logRecord) {
         AuditLog model = new AuditLog();
         model.setTenant(logRecord.getTenant());
         model.setModule(getModule());
@@ -95,7 +130,7 @@ public class AuditLogServiceImpl implements AuditLogService, ImportAware {
         model.setCatalog(logRecord.getCategory());
         model.setRemark(logRecord.getDetail());
         model.setRecordTime(logRecord.getCreateTime());
-        repository.save(model);
+        auditLogRepository.save(model);
     }
 
     @Override

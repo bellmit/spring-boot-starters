@@ -2,9 +2,6 @@ package org.shield.audit.model;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -62,32 +59,12 @@ public class LoginLog {
     private String os;
 
     /**
-     * 类别
+     * 用户名
      */
-    @ApiModelProperty(value = "类别", example = "订单管理")
-    @Field(name = "`catalog`")
+    @ApiModelProperty(value = "用户名", example = "ADMI13EBB25728C21000")
+    @Field(name = "`username`")
     @Indexed
-    private String catalog;
-
-    /**
-     * 操作人编号
-     */
-    @ApiModelProperty(value = "操作人编号", example = "ADMI13EBB25728C21000")
-    @Field(name = "`operator_id`")
-    @NotBlank(message = "操作人编号不能为空")
-    @Length(max = 64, message = "操作人编号最长为64")
-    @Indexed
-    private String operatorId;
-
-    /**
-     * 操作人名称
-     */
-    @ApiModelProperty(value = "操作人名称", example = "ADMI13EBB25728C21000")
-    @Field(name = "`operator_name`")
-    @NotBlank(message = "操作人名称不能为空")
-    @Length(max = 64, message = "操作人名称最长为64")
-    @Indexed
-    private String operatorName;
+    private String username;
 
     /**
      * 备注
