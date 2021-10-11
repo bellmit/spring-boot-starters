@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -102,6 +103,7 @@ public class AuditLog {
      * 创建时间
      */
     @ApiModelProperty(value = "创建时间", example = "2021-09-26 10:57:24", dataType = "date")
+    @CreatedDate
     @Field(name = "`create_time`")
     private Date createTime;
 }
