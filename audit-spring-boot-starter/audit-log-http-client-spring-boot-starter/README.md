@@ -3,13 +3,13 @@
 
 ## 使用方法
 
-1. 开启日志
+### 开启日志
 
 ```java
 @EnableLogRecord(tenant = "org.shield.module")
 ```
 
-2. 配置 YAML
+### 配置 YAML
 
 ```yaml
 # 操作日志
@@ -18,7 +18,7 @@ audit:
     hostname: iot-admin
 ```
 
-注解
+### 注解
 
 ```java
 @LogRecordAnnotation(bizNo = "{{#orderId}}", category = "合同", detail = "{{#_ret}}", success = "创建", prefix = "")
