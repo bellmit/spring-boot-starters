@@ -55,14 +55,14 @@ public class AdminRole {
     /**
      * 创建时间
      */
-    @ApiModelProperty("创建时间")
+    @ApiModelProperty(value = "创建时间", example = "2021-09-26 10:57:24", dataType = "date")
     @Column(name = "`create_time`")
     private Date createTime;
 
     /**
      * 更新时间
      */
-    @ApiModelProperty("更新时间")
+    @ApiModelProperty(value = "更新时间", example = "2021-09-26 10:57:24", dataType = "date")
     @Column(name = "`update_time`")
     private Date updateTime;
 }

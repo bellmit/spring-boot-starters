@@ -34,7 +34,7 @@ public class Permission {
     /**
      * 编号
      */
-    @ApiModelProperty("编号")
+    @ApiModelProperty(value = "编号", example = "ALL")
     @Column(name = "`permission_id`")
     @LogicId(prefix = "PERM")
     private String permissionId;
@@ -51,7 +51,7 @@ public class Permission {
     /**
      * 权限名称
      */
-    @ApiModelProperty("权限名称")
+    @ApiModelProperty(value = "权限名称", example = "所有权限")
     @Column(name = "`name`")
     @NotBlank(message = "权限名称不能为空")
     private String name;
@@ -59,7 +59,7 @@ public class Permission {
     /**
      * 路由表达式
      */
-    @ApiModelProperty(value = "路由表达式", example = "/iot/admin/.*")
+    @ApiModelProperty(value = "路由表达式", example = ".*")
     @Column(name = "`uri_regex`")
     @NotBlank(message = "路由表达式不能为空")
     @ValidRegex(message = "正则表达式不合法")
@@ -76,7 +76,7 @@ public class Permission {
     /**
      * 序号
      */
-    @ApiModelProperty("序号")
+    @ApiModelProperty(value = "序号", example = "0")
     @Column(name = "`sort`")
     @NotNull(message = "序号不能为空")
     private Short sort;
@@ -93,14 +93,14 @@ public class Permission {
     /**
      * 创建时间
      */
-    @ApiModelProperty("创建时间")
+    @ApiModelProperty(value = "创建时间", example = "2021-09-26 10:57:24", dataType = "date")
     @Column(name = "`create_time`")
     private Date createTime;
 
     /**
      * 更新时间
      */
-    @ApiModelProperty("更新时间")
+    @ApiModelProperty(value = "更新时间", example = "2021-09-26 10:57:24", dataType = "date")
     @Column(name = "`update_time`")
     private Date updateTime;
 
@@ -108,5 +108,6 @@ public class Permission {
      * 子权限列表
      */
     @Transient
+    @ApiModelProperty(value = "权限列表", example = "[]", required = false)
     private List<Permission> children;
 }
