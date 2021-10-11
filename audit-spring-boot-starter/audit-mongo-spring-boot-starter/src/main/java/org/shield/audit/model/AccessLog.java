@@ -89,6 +89,7 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "请求编号", example = "REQUEST_ID")
     @Field(name = "`request_id`")
+    @Indexed
     private String requestId;
 
     /**

@@ -18,7 +18,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel
-@Table(name = "login_log")
+@Table(name = "access_log")
 public class AccessLog {
 
     /**
@@ -30,6 +30,14 @@ public class AccessLog {
     @Column(name = "`id`")
     @JsonIgnore
     private Long id;
+
+
+    /**
+     * 租户标识
+     */
+    @ApiModelProperty(value = "租户标识", example = "org.shield.admin", required = true)
+    @Column(name = "`tenant`")
+    private String tenant;
 
     /**
      * 业务模块
@@ -79,6 +87,13 @@ public class AccessLog {
     @ApiModelProperty(value = "请求参数", example = "{}")
     @Column(name = "`request_params`")
     private String requestParams;
+
+    /**
+     * 请求编号
+     */
+    @ApiModelProperty(value = "请求编号", example = "REQUEST_ID")
+    @Column(name = "`request_id`")
+    private String requestId;
 
     /**
      * 操作人编号
