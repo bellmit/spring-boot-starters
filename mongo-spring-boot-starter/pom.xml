@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.shield</groupId>
+    <artifactId>spring-boot-starters</artifactId>
+    <version>1.15.0</version>
+  </parent>
+  <groupId>org.shield</groupId>
+  <artifactId>mongo-spring-boot-starter</artifactId>
+  <version>1.15.0</version>
+  <name>mongo-spring-boot-starter</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <!-- Spring MongoDB-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    <!-- swagger -->
+    <dependency>
+      <groupId>org.shield</groupId>
+      <artifactId>swagger-spring-boot-starter</artifactId>
+    </dependency>
+  </dependencies>
+</project>

@@ -2,7 +2,6 @@ package org.shield.admin.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import org.shield.mybatis.plugin.LogicId;
@@ -14,10 +13,7 @@ import lombok.Data;
 @Data
 @ApiModel
 @Table(name = "`admin_role`")
-public class AdminRole implements Serializable {
-
-    private static final long serialVersionUID = -9127201359272147509L;
-
+public class AdminRole {
     /**
      * ID
      */

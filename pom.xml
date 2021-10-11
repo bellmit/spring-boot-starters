@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>spring-boot-starters</artifactId>
-  <version>1.14.1</version>
+  <version>1.15.0</version>
   <name>spring-boot-starters</name>
   <packaging>pom</packaging>
   <properties>
@@ -25,10 +25,12 @@
   <modules>
     <module>admin-spring-boot-starter</module>
     <module>app-spring-boot-starter</module>
+    <module>audit-spring-boot-starter</module>
     <module>captcha-spring-boot-starter</module>
     <module>crud-spring-boot-starter</module>
     <module>json-spring-boot-starter</module>
     <module>kafka-spring-boot-starter</module>
+    <module>mongo-spring-boot-starter</module>
     <module>mybatis-spring-boot-starter</module>
     <module>redis-spring-boot-starter</module>
     <module>rest-spring-boot-starter</module>
@@ -59,92 +61,110 @@
         <artifactId>hutool-captcha</artifactId>
         <version>${hutool.version}</version>
       </dependency>
+      <!-- 通用操作日志 -->
+      <dependency>
+        <groupId>io.github.mouzt</groupId>
+        <artifactId>bizlog-sdk</artifactId>
+        <version>1.0.8</version>
+      </dependency>
+      <!-- 日志审计 -->
+      <dependency>
+        <groupId>org.shield</groupId>
+        <artifactId>audit-spring-boot-starter</artifactId>
+        <version>1.15.0</version>
+      </dependency>
       <!-- 验证码常用组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>captcha-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- Crud常用组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>crud-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- Kafka 依赖 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>kafka-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
+      </dependency>
+      <!-- Mongo -->
+      <dependency>
+        <groupId>org.shield</groupId>
+        <artifactId>mongo-spring-boot-starter</artifactId>
+        <version>1.15.0</version>
       </dependency>
       <!-- Mybatis公用依赖 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- Mybatis公用依赖POM -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
         <type>pom</type>
       </dependency>
       <!-- Redis 缓存相关操作组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>redis-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- Redis 缓存相关操作组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>redis-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
         <type>pom</type>
       </dependency>
       <!-- Restful 相关组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>rest-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- Spring Security JWT -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>security-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- Swagger 文档生成 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>swagger-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- 微服务公用依赖 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>service-spring-cloud-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- 微服务公用依赖 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>service-spring-cloud-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
         <type>pom</type>
       </dependency>
       <!-- 验证器组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>validation-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!-- 微盟组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>weimob-spring-boot-starter</artifactId>
-        <version>1.14.1</version>
+        <version>1.15.0</version>
       </dependency>
       <!--Spring Cloud 相关依赖-->
       <dependency>

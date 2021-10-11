@@ -11,8 +11,6 @@ import lombok.Data;
 @Data
 public class AdminVo extends Admin {
 
-    private static final long serialVersionUID = -1192987591771560637L;
-
     /**
      * 密码是否过期
      */
