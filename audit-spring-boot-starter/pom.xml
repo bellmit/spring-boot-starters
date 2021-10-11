@@ -16,6 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <modules>
+    <module>access-log-http-client-spring-boot-starter</module>
     <module>audit-common</module>
     <module>audit-log-http-client-spring-boot-starter</module>
     <module>audit-mongo-spring-boot-starter</module>
