@@ -17,6 +17,7 @@
   </properties>
   <modules>
     <module>audit-common</module>
+    <module>audit-log-http-client-spring-boot-starter</module>
     <module>audit-mongo-spring-boot-starter</module>
     <module>audit-mysql-spring-boot-starter</module>
   </modules>
