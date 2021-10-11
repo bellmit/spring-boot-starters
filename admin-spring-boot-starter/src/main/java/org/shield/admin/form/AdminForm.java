@@ -23,32 +23,30 @@ import lombok.Data;
  */
 @ApiModel
 @Data
-@Unique(table = "admin", field = "name", message = "姓名已存在", sn = "accountId", tableSn = "adminId",
-        exceptDeleted = true, groups = {OnCreate.class, OnUpdate.class})
-@Unique(table = "admin_account_auth", field = "username", tableField = "sourceId", message = "用户名已存在", sn = "accountId",
-        affixCondition = "AND source=" + AccountAuthSource.USERNAME_VAL, exceptDeleted = true,
-        groups = {OnCreate.class, OnUpdate.class})
-@Unique(table = "admin_account_auth", field = "phone", tableField = "sourceId", message = "手机号已存在", sn = "accountId",
-        affixCondition = "AND source=" + AccountAuthSource.PHONE_VAL, exceptDeleted = true,
-        groups = {OnCreate.class, OnUpdate.class})
+@Unique(table = "admin", field = "name", message = "姓名已存在", sn = "accountId", tableSn = "adminId", exceptDeleted = true, groups = {
+        OnCreate.class, OnUpdate.class })
+@Unique(table = "admin_account_auth", field = "username", tableField = "sourceId", message = "用户名已存在", sn = "accountId", affixCondition = "AND source="
+        + AccountAuthSource.USERNAME_VAL, exceptDeleted = true, groups = { OnCreate.class, OnUpdate.class })
+@Unique(table = "admin_account_auth", field = "phone", tableField = "sourceId", message = "手机号已存在", sn = "accountId", affixCondition = "AND source="
+        + AccountAuthSource.PHONE_VAL, exceptDeleted = true, groups = { OnCreate.class, OnUpdate.class })
 public class AdminForm {
 
     @ApiModelProperty(hidden = true)
     private String accountId;
 
     @ApiModelProperty(value = "姓名", example = "张明", required = true)
-    @CharLength(min = 2, max = 20, message = "姓名介于2-20个字符之间", groups = {OnCreate.class, OnUpdate.class})
-    @NotBlank(message = "姓名不能为空", groups = {OnCreate.class, OnUpdate.class})
+    @CharLength(min = 2, max = 20, message = "姓名介于2-20个字符之间", groups = { OnCreate.class, OnUpdate.class })
+    @NotBlank(message = "姓名不能为空", groups = { OnCreate.class, OnUpdate.class })
     private String name;
 
     @ApiModelProperty(value = "手机号码", example = "18000000001", required = true)
-    @NotBlank(message = "手机号码不能为空", groups = {OnCreate.class, OnUpdate.class})
-    @Phone(groups = {OnCreate.class, OnUpdate.class})
+    @NotBlank(message = "手机号码不能为空", groups = { OnCreate.class, OnUpdate.class })
+    @Phone(groups = { OnCreate.class, OnUpdate.class })
     private String phone;
 
     @ApiModelProperty(value = "用户名", example = "zhangming", required = true)
-    @CharLength(min = 3, max = 20, message = "用户名介于3-20个字符之间", groups = {OnCreate.class, OnUpdate.class})
-    @NotBlank(message = "用户名不能为空", groups = {OnCreate.class, OnUpdate.class})
+    @CharLength(min = 3, max = 20, message = "用户名介于3-20个字符之间", groups = { OnCreate.class, OnUpdate.class })
+    @NotBlank(message = "用户名不能为空", groups = { OnCreate.class, OnUpdate.class })
     private String username;
 
     @JsonIgnore
@@ -60,7 +58,7 @@ public class AdminForm {
     private String password;
 
     @ApiModelProperty(value = "是否有效：1有效 0无效", example = "1", required = true)
-    @NotNull(groups = {OnCreate.class, OnUpdate.class})
+    @NotNull(groups = { OnCreate.class, OnUpdate.class })
     private Boolean isActive = true;
 
     /**
@@ -92,5 +90,10 @@ public class AdminForm {
         auth.setSource(AccountAuthSource.PHONE.value());
         auth.setSourceId(getPhone());
         return auth;
+    }
+
+    public String toString() {
+        return String.format("AdminForm(accountId=%s, name=%s, phone=%s, username=%s, sourceId=%s, isActive=%b)",
+                accountId, name, phone, username, sourceId, isActive);
     }
 }
