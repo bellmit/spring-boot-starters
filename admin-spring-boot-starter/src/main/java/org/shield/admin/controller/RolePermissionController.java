@@ -2,6 +2,9 @@ package org.shield.admin.controller;
 
 import java.util.List;
 import javax.validation.Valid;
+
+import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
+
 import org.shield.admin.form.RolePermissionForm;
 import org.shield.admin.service.RolePermissionService;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +33,7 @@ public class RolePermissionController {
 
     @ApiOperation("更新")
     @PutMapping
+    @LogRecordAnnotation(bizNo = "{{#roleId}}", category = "角色的权限", detail = "{{#_ret}}", success = "更新", fail = "{{#_errorMsg}}", prefix = "")
     public List<String> update(@PathVariable("roleId") String roleId, @Valid @RequestBody RolePermissionForm form) {
         return service.update(roleId, form);
     }

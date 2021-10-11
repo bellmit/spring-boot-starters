@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
+import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
 
 import org.shield.admin.model.BannerPosition;
 import org.shield.admin.service.BannerPositionService;
@@ -40,6 +41,7 @@ public class BannerPositionController {
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
+    @LogRecordAnnotation(bizNo = "{{#form.bannerPositionId}}", category = "广告位", detail = "{{#_ret}}", success = "创建", fail = "{{#_errorMsg}}", prefix = "")
     public BannerPosition create(@Valid @RequestBody BannerPosition form) {
         return service.create(form);
     }
@@ -47,6 +49,7 @@ public class BannerPositionController {
     @ApiOperation("删除")
     @DeleteMapping("/{bannerPositionId}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @LogRecordAnnotation(bizNo = "{{#bannerPositionId}}", category = "广告位", detail = "", success = "删除", fail = "{{#_errorMsg}}", prefix = "")
     public void delete(@PathVariable String bannerPositionId) {
         service.deleteById(bannerPositionId);
     }
@@ -60,7 +63,9 @@ public class BannerPositionController {
 
     @ApiOperation("更新")
     @PutMapping("/{bannerPositionId}")
-    public BannerPosition update(@PathVariable("bannerPositionId") String bannerPositionId, @RequestBody BannerPosition form) {
+    @LogRecordAnnotation(bizNo = "{{#bannerPositionId}}", category = "广告位", detail = "{{#_ret}}", success = "更新", fail = "{{#_errorMsg}}", prefix = "")
+    public BannerPosition update(@PathVariable("bannerPositionId") String bannerPositionId,
+            @RequestBody BannerPosition form) {
         return service.update(bannerPositionId, form);
     }
 

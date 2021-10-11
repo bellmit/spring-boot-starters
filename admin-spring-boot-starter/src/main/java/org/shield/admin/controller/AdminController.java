@@ -37,14 +37,15 @@ public class AdminController {
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    @LogRecordAnnotation(bizNo = "{{#_ret.adminId}}", category = "管理员", detail = "{{#_ret}}", success = "创建", prefix = "")
-    public Admin create(@Validated(OnCreate.class) @RequestBody AdminForm admin) {
-        return service.create(admin);
+    @LogRecordAnnotation(bizNo = "{{#_ret.adminId}}", category = "管理员", detail = "{{#form}}", success = "创建", fail = "{{#_errorMsg}}", prefix = "")
+    public Admin create(@Validated(OnCreate.class) @RequestBody AdminForm form) {
+        return service.create(form);
     }
 
     @ApiOperation("删除")
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @LogRecordAnnotation(bizNo = "{{#id}}", category = "管理员", detail = "", success = "删除", fail = "{{#_errorMsg}}", prefix = "")
     public void delete(@PathVariable String id) {
         service.deleteById(id);
     }
@@ -57,6 +58,7 @@ public class AdminController {
 
     @ApiOperation("更新")
     @PutMapping("/{id}")
+    @LogRecordAnnotation(bizNo = "{{#id}}", category = "管理员", detail = "{{#form}}", success = "更新", fail = "{{#_errorMsg}}", prefix = "")
     public AdminForm update(@PathVariable("id") String id, @RequestBody AdminForm form) {
         form.setAccountId(id);
         service.update(form);

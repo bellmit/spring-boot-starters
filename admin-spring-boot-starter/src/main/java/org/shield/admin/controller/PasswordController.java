@@ -1,6 +1,9 @@
 package org.shield.admin.controller;
 
 import javax.validation.Valid;
+
+import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
+
 import org.shield.admin.form.PasswordChangeForm;
 import org.shield.admin.service.PasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +28,9 @@ public class PasswordController {
 
     @ApiOperation("修改密码")
     @PutMapping("/change")
+    @LogRecordAnnotation(bizNo = "{{#userId}}", category = "管理员密码", detail = "", success = "修改密码", fail = "{{#_errorMsg}}", prefix = "")
     public void change(@RequestHeader("auth-userId") String userId, @Valid @RequestBody PasswordChangeForm form) {
-        service.change(userId, form);;
+        service.change(userId, form);
     }
 
     @ApiOperation("重置密码")

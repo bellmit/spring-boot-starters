@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
+import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
 
 import org.shield.admin.form.AppReleaseQueryForm;
 import org.shield.admin.model.AppRelease;
@@ -39,13 +40,15 @@ public class AppReleaseController {
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public AppRelease create(@Valid @RequestBody AppRelease model) {
-        return service.create(model);
+    @LogRecordAnnotation(bizNo = "APP_RELEASE_{{#form.id}}", category = "版本发布", detail = "{{#_ret}}", success = "创建", fail = "{{#_errorMsg}}", prefix = "")
+    public AppRelease create(@Valid @RequestBody AppRelease form) {
+        return service.create(form);
     }
 
     @ApiOperation("删除")
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @LogRecordAnnotation(bizNo = "APP_RELEASE_{{#id}}", category = "版本发布", detail = "", success = "删除", fail = "{{#_errorMsg}}", prefix = "")
     public void delete(@PathVariable Integer id) {
         service.deleteById(id);
     }
@@ -59,6 +62,7 @@ public class AppReleaseController {
 
     @ApiOperation("更新")
     @PutMapping("/{id}")
+    @LogRecordAnnotation(bizNo = "APP_RELEASE_{{#id}}", category = "版本发布", detail = "{{#_ret}}", success = "更新", fail = "{{#_errorMsg}}", prefix = "")
     public AppRelease update(@PathVariable("id") Integer id, @RequestBody AppRelease form) {
         form.setId(id);
         service.update(form);

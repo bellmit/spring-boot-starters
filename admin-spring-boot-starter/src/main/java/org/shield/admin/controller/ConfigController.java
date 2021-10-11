@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
+import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
 
 import org.shield.admin.model.Config;
 import org.shield.admin.service.ConfigService;
@@ -39,13 +40,15 @@ public class ConfigController {
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Config create(@Valid @RequestBody Config model) {
-        return service.create(model);
+    @LogRecordAnnotation(bizNo = "CONFIG_{{#form.id}}", category = "配置", detail = "{{#_ret}}", success = "创建", fail = "{{#_errorMsg}}", prefix = "")
+    public Config create(@Valid @RequestBody Config form) {
+        return service.create(form);
     }
 
     @ApiOperation("删除")
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @LogRecordAnnotation(bizNo = "CONFIG_{{#id}}", category = "配置", detail = "", success = "删除", fail = "{{#_errorMsg}}", prefix = "")
     public void delete(@PathVariable Integer id) {
         service.deleteById(id);
     }
@@ -59,6 +62,7 @@ public class ConfigController {
 
     @ApiOperation("更新")
     @PutMapping("/{id}")
+    @LogRecordAnnotation(bizNo = "CONFIG_{{#id}}", category = "配置", detail = "{{#_ret}}", success = "更新", fail = "{{#_errorMsg}}", prefix = "")
     public Config update(@PathVariable("id") Integer id, @RequestBody Config form) {
         form.setId(id);
         service.update(form);

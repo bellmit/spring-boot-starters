@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import com.github.pagehelper.PageInfo;
 import com.github.pagehelper.page.PageMethod;
+import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
 
 import org.shield.admin.form.BannerQueryForm;
 import org.shield.admin.model.Banner;
@@ -41,7 +42,9 @@ public class BannerController {
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Banner create(@ApiParam("广告位编号") @PathVariable("bannerPositionId") String bannerPositionId, @Valid @RequestBody Banner form) {
+    @LogRecordAnnotation(bizNo = "BANNER_{{#form.id}}", category = "广告", detail = "{{#_ret}}", success = "创建", fail = "{{#_errorMsg}}", prefix = "")
+    public Banner create(@ApiParam("广告位编号") @PathVariable("bannerPositionId") String bannerPositionId,
+            @Valid @RequestBody Banner form) {
         form.setBannerPositionId(bannerPositionId);
         return service.create(form);
     }
@@ -49,13 +52,15 @@ public class BannerController {
     @ApiOperation("删除")
     @DeleteMapping("/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @LogRecordAnnotation(bizNo = "BANNER_{{#id}}", category = "广告", detail = "", success = "删除", fail = "{{#_errorMsg}}", prefix = "")
     public void delete(@PathVariable Integer id) {
         service.deleteById(id);
     }
 
     @ApiOperation("查询")
     @GetMapping
-    public PageInfo<Banner> list(@ApiParam("广告位编号") @PathVariable("bannerPositionId") String bannerPositionId, BannerQueryForm form) {
+    public PageInfo<Banner> list(@ApiParam("广告位编号") @PathVariable("bannerPositionId") String bannerPositionId,
+            BannerQueryForm form) {
         PageMethod.startPage(form);
         form.setBannerPositionId(bannerPositionId);
         return new PageInfo<>(service.list(form));
@@ -63,6 +68,7 @@ public class BannerController {
 
     @ApiOperation("更新")
     @PutMapping("/{id}")
+    @LogRecordAnnotation(bizNo = "BANNER_{{#id}}", category = "广告", detail = "{{#_ret}}", success = "更新", fail = "{{#_errorMsg}}", prefix = "")
     public Banner update(@PathVariable("id") Integer id, @RequestBody Banner form) {
         form.setId(id);
         return service.update(form);
