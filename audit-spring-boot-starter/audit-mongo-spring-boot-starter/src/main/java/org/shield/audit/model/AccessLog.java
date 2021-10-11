@@ -30,7 +30,7 @@ public class AccessLog {
     private String tenant;
 
     /**
-     * 业务模块
+     * IP
      */
     @ApiModelProperty(value = "IP地址", example = "183.6.7.210")
     @Field(name = "`ip`")
