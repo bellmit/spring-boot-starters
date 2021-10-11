@@ -61,7 +61,7 @@ public class LoginLog {
     /**
      * 用户名
      */
-    @ApiModelProperty(value = "用户名", example = "ADMI13EBB25728C21000")
+    @ApiModelProperty(value = "用户名", example = "admin")
     @Field(name = "`username`")
     @Indexed
     private String username;

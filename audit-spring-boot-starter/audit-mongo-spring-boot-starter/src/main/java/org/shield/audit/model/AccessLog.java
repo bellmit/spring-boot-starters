@@ -2,6 +2,8 @@ package org.shield.audit.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -15,8 +17,16 @@ import lombok.Data;
  */
 @Data
 @ApiModel
-@Document("login_log")
+@Document("access_log")
 public class AccessLog {
+
+    /**
+     * 租户标识
+     */
+    @ApiModelProperty(value = "租户标识", example = "org.shield.admin", required = true)
+    @Field(name = "`tenant`")
+    @Indexed
+    private String tenant;
 
     /**
      * 业务模块
@@ -24,6 +34,7 @@ public class AccessLog {
     @ApiModelProperty(value = "IP地址", example = "183.6.7.210")
     @Field(name = "`ip`")
     @Indexed
+    @NotBlank
     private String ip;
 
     /**
@@ -55,6 +66,7 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "访问地址", example = "https://github.com")
     @Field(name = "`url`")
+    @NotBlank
     private String url;
 
     /**
@@ -62,6 +74,7 @@ public class AccessLog {
      */
     @ApiModelProperty(value = "请求方式", example = "POST")
     @Field(name = "`request_method`")
+    @NotBlank
     private String requestMethod;
 
     /**
@@ -70,6 +83,13 @@ public class AccessLog {
     @ApiModelProperty(value = "请求参数", example = "{}")
     @Field(name = "`request_params`")
     private String requestParams;
+
+    /**
+     * 请求编号
+     */
+    @ApiModelProperty(value = "请求编号", example = "REQUEST_ID")
+    @Field(name = "`request_id`")
+    private String requestId;
 
     /**
      * 操作人编号
@@ -82,7 +102,7 @@ public class AccessLog {
     /**
      * 操作人名称
      */
-    @ApiModelProperty(value = "操作人名称", example = "ADMI13EBB25728C21000")
+    @ApiModelProperty(value = "操作人名称", example = "管理员")
     @Field(name = "`operator_name`")
     @Indexed
     private String operatorName;

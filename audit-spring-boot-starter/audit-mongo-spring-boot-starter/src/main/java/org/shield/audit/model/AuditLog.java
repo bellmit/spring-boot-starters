@@ -77,7 +77,7 @@ public class AuditLog {
     /**
      * 操作人名称
      */
-    @ApiModelProperty(value = "操作人名称", example = "ADMI13EBB25728C21000")
+    @ApiModelProperty(value = "操作人名称", example = "管理员")
     @Field(name = "`operator_name`")
     @NotBlank(message = "操作人名称不能为空")
     @Length(max = 64, message = "操作人名称最长为64")

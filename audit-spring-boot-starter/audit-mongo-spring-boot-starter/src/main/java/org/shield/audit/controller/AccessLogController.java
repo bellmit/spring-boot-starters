@@ -2,10 +2,9 @@ package org.shield.audit.controller;
 
 import javax.validation.Valid;
 
-
-import org.shield.audit.model.AuditLog;
-import org.shield.audit.form.AuditLogQueryForm;
-import org.shield.audit.service.AuditLogService;
+import org.shield.audit.form.AccessLogQueryForm;
+import org.shield.audit.model.AccessLog;
+import org.shield.audit.service.AccessLogService;
 import org.shield.mongo.domain.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,24 +24,24 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "操作日志")
-@RestController("AuditAuditLogController")
-@RequestMapping("logs/audit-logs")
-public class AuditLogController {
+@Api(tags = "访问日志")
+@RestController("AuditAccessLogController")
+@RequestMapping("logs/access-logs")
+public class AccessLogController {
 
     @Autowired
-    private AuditLogService service;
+    private AccessLogService service;
 
     @ApiOperation("创建")
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public AuditLog create(@Valid @RequestBody AuditLog form) {
+    public AccessLog create(@Valid @RequestBody AccessLog form) {
         return service.create(form);
     }
 
     @ApiOperation("查询")
     @GetMapping
-    public PageInfo<AuditLog> list(AuditLogQueryForm form) {
+    public PageInfo<AccessLog> list(AccessLogQueryForm form) {
         return service.list(form);
     }
 }
