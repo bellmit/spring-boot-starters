@@ -3,19 +3,19 @@
 
 ## 使用方法
 
-开启日志
+1. 开启日志
 
 ```java
-@EnableLogRecord(tenant = "com.geely.liangmu")
+@EnableLogRecord(tenant = "org.shield.module")
 ```
 
-配置 YAML
+2. 配置 YAML
 
 ```yaml
 # 操作日志
 audit:
   log:
-    hostname: liangmu-admin
+    hostname: iot-admin
 ```
 
 注解
