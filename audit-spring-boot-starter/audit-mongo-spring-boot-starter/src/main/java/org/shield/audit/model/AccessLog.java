@@ -129,5 +129,6 @@ public class AccessLog {
     @ApiModelProperty(value = "创建时间", example = "2021-09-26 10:57:24", dataType = "date")
     @CreatedDate
     @Field(name = "create_time")
+    @Indexed(name = "createTime", expireAfter = "#{@mongoExpireConfig.expireAfter}")
     private Date createTime;
 }
