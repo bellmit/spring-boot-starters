@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "操作日志")
+@Api(tags = "日志: 操作日志")
 @RestController("AuditAuditLogController")
 @RequestMapping("logs/audit-logs")
 public class AuditLogController {
