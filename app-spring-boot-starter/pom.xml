@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>spring-boot-starters</artifactId>
-    <version>1.16.1</version>
+    <version>1.16.2</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>app-spring-boot-starter</artifactId>
-  <version>1.16.1</version>
+  <version>1.16.2</version>
   <name>app-spring-boot-starter</name>
   <dependencies>
     <!-- Spring Web Service -->
