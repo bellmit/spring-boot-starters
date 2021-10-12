@@ -1,4 +1,4 @@
-package org.shield.gateway.model;
+package org.shield.audit.client.gateway.model;
 
 import java.util.Date;
 

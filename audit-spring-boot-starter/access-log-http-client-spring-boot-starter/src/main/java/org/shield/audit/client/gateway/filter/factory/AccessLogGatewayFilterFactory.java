@@ -1,40 +1,32 @@
-package org.shield.gateway.filter.factory;
+package org.shield.audit.client.gateway.filter.factory;
 
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
-import org.shield.gateway.feign.AccessLogHttpClient;
-import org.shield.gateway.model.AccessLogForm;
+import org.shield.audit.client.gateway.feign.AccessLogHttpClient;
+import org.shield.audit.client.gateway.model.AccessLogForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.OrderedGatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.http.HttpStatus;
+import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.server.ServerWebExchange;
 
 import cn.hutool.core.net.NetUtil;
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.extra.servlet.ServletUtil;
+import cn.hutool.core.thread.NamedThreadFactory;
+import cn.hutool.core.thread.ThreadFactoryBuilder;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 /**
  * 记录用户访问日志
@@ -48,9 +40,10 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
     @Autowired
     private ApplicationContext context;
 
-    private static final String AUTH_USER_ID = "auth-userId";
+    @Autowired
+    private AsyncTaskExecutor asyncTaskExecutor;
 
-    ExecutorService executorService = Executors.newFixedThreadPool(10);
+    private static final String AUTH_USER_ID = "auth-userId";
 
     public AccessLogGatewayFilterFactory() {
         super(Config.class);
@@ -68,34 +61,40 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
             if (config.getExcludes().stream().anyMatch(e -> url.matches(e))) {
                 return chain.filter(exchange);
             }
-
-            String userId = exchange.getRequest().getHeaders().getFirst("auth-userId");
-            String userName = exchange.getRequest().getHeaders().getFirst("auth-userName");
-            String tenant = exchange.getRequest().getHeaders().getFirst("auth-userName");
-            String method = exchange.getRequest().getMethodValue();
-
-            UserAgent ua = UserAgentUtil.parse(exchange.getRequest().getHeaders().getFirst("User-Agent"));
-
-            AccessLogForm form = new AccessLogForm();
-            form.setTenant(tenant == null ? "" : tenant);
-            form.setIp(getClientIpByHeader(exchange.getRequest()));
-            form.setBrowser(ua.getBrowser().toString() + " " + ua.getVersion());
-            form.setOs(ua.getOs().toString());
-            form.setRequestMethod(method);
-            form.setRequestParams(getRequestBody(exchange.getRequest()));
-            form.setOperatorId(userId);
-            form.setOperatorName(userName);
-            form.setRemark(exchange.getRequest().getQueryParams().toString());
-            form.setUrl(exchange.getRequest().getURI().toString());
-
-            AccessLogHttpClient accessLogHttpClient = context.getBean(AccessLogHttpClient.class);
-            log.info("记录日志...");
-            executorService.submit((Callable<AccessLogForm>) () -> accessLogHttpClient.createAccesLogs(form));
-            // future.get();
-
+            submitAccessLog(exchange.getRequest());
             return chain.filter(exchange);
-
         }, 100);
+    }
+
+    @Async
+    private void submitAccessLog(ServerHttpRequest request) {
+        String userId = request.getHeaders().getFirst(AUTH_USER_ID);
+        String userName = request.getHeaders().getFirst("auth-userName");
+        String tenant = request.getHeaders().getFirst("auth-userName");
+        String method = request.getMethodValue();
+
+        UserAgent ua = UserAgentUtil.parse(request.getHeaders().getFirst("User-Agent"));
+
+        AccessLogForm form = new AccessLogForm();
+        form.setTenant(tenant == null ? "" : tenant);
+        form.setIp(getClientIpByHeader(request));
+        form.setBrowser(ua.getBrowser().toString() + " " + ua.getVersion());
+        form.setOs(ua.getOs().toString());
+        form.setRequestMethod(method);
+        form.setRequestParams(getRequestBody(request));
+        form.setOperatorId(userId);
+        form.setOperatorName(userName);
+        form.setUrl(request.getURI().toString());
+
+        AccessLogHttpClient accessLogHttpClient = context.getBean(AccessLogHttpClient.class);
+
+        asyncTaskExecutor.execute(() -> {
+            try {
+                accessLogHttpClient.createAccesLogs(form);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public static String getClientIpByHeader(ServerHttpRequest request) {
@@ -109,6 +108,9 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
             }
         }
 
+        if (request.getRemoteAddress() == null) {
+            return "";
+        }
         ip = request.getRemoteAddress().getAddress().getHostAddress();
         return NetUtil.getMultistageReverseProxyIp(ip);
     }
