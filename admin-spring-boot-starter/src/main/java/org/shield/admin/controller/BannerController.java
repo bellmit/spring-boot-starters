@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiParam;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "广告")
+@Api(tags = "广告: 广告")
 @RestController("AdminConsoleAdController")
 @RequestMapping("banner-positions/{bannerPositionId}/banners")
 public class BannerController {

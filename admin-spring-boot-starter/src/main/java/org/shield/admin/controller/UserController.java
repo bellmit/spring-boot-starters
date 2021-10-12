@@ -16,7 +16,7 @@ import springfox.documentation.annotations.ApiIgnore;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "用户")
+@Api(tags = "系统账号: 用户")
 @RestController("AdminConsoleUserController")
 @RequestMapping("users")
 public class UserController {

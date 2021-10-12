@@ -15,7 +15,7 @@ import tk.mybatis.mapper.entity.Example.Criteria;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "管理员账号登录方式")
+@Api(tags = "系统账号: 管理员账号登录方式")
 @RestController("AdminConsoleAccountAuthController")
 @RequestMapping("admins/{adminId}/accountAuths")
 public class AccountAuthController {

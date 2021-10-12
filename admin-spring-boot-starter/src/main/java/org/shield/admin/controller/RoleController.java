@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "角色")
+@Api(tags = "权限: 角色")
 @RestController("AdminConsoleRoleController")
 @RequestMapping("roles")
 public class RoleController {

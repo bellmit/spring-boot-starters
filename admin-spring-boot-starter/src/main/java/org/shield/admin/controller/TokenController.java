@@ -18,7 +18,7 @@ import com.mzt.logapi.starter.annotation.LogRecordAnnotation;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "登录")
+@Api(tags = "系统账号: 登录")
 @RestController("AdminConsoleTokenController")
 @RequestMapping("tokens")
 public class TokenController {

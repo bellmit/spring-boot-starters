@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "权限")
+@Api(tags = "权限: 权限")
 @RestController("AdminConsolePermissionController")
 @RequestMapping("permissions")
 public class PermissionController {

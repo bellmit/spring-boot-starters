@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author zacksleo <zacksleo@gmail.com>
  */
-@Api(tags = "角色的权限")
+@Api(tags = "权限: 角色的权限")
 @RestController("AdminConsoleRolePermissionController")
 @RequestMapping("roles/{roleId}/permissions")
 public class RolePermissionController {

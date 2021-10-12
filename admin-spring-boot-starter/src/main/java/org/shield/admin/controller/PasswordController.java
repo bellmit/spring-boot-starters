@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * @author zacksleo <zacksleo@gmail.com>
  */
-@Api(tags = "密码管理")
+@Api(tags = "系统账号: 密码管理")
 @RestController("AdminConsolePasswordController")
 @RequestMapping("admins/passwords")
 public class PasswordController {

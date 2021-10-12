@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "管理员")
+@Api(tags = "系统账号: 管理员")
 @RestController("AdminConsoleConsoleAdminController")
 @RequestMapping("admins")
 public class AdminController {

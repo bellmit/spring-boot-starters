@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * @author zacksleo@gmail.com
  */
-@Api(tags = "验证码")
+@Api(tags = "系统账号: 验证码")
 @RequestMapping("captchas")
 @RestController("AdminConsoleCaptchaController")
 public class CaptchaController {
