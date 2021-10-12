@@ -23,7 +23,7 @@ public class LoginLog {
      * 租户标识
      */
     @ApiModelProperty(value = "租户标识", example = "org.shield.admin", required = true)
-    @Field(name = "`tenant`")
+    @Field(name = "tenant")
     @Indexed
     private String tenant;
 
@@ -31,7 +31,7 @@ public class LoginLog {
      * 业务模块
      */
     @ApiModelProperty(value = "IP地址", example = "183.6.7.210")
-    @Field(name = "`ip`")
+    @Field(name = "ip")
     @Indexed
     private String ip;
 
@@ -39,7 +39,7 @@ public class LoginLog {
      * 位置
      */
     @ApiModelProperty(value = "位置", example = "河北省 衡水市")
-    @Field(name = "`location`")
+    @Field(name = "location")
     @Indexed
     private String location;
 
@@ -47,7 +47,7 @@ public class LoginLog {
      * 浏览器
      */
     @ApiModelProperty(value = "浏览器", example = "Chrome 91")
-    @Field(name = "`browser`")
+    @Field(name = "browser")
     @Indexed
     private String browser;
 
@@ -55,7 +55,7 @@ public class LoginLog {
      * 操作系统
      */
     @ApiModelProperty(value = "操作系统", example = "Windows 10")
-    @Field(name = "`os`")
+    @Field(name = "os")
     @Indexed
     private String os;
 
@@ -63,7 +63,7 @@ public class LoginLog {
      * 用户名
      */
     @ApiModelProperty(value = "用户名", example = "admin")
-    @Field(name = "`username`")
+    @Field(name = "username")
     @Indexed
     private String username;
 
@@ -71,14 +71,14 @@ public class LoginLog {
      * 备注
      */
     @ApiModelProperty(value = "备注", example = "备注")
-    @Field(name = "`remark`")
+    @Field(name = "remark")
     private String remark;
 
     /**
      * 记录时间
      */
     @ApiModelProperty(value = "记录时间", example = "2021-09-26 10:57:24", dataType = "date")
-    @Field(name = "`record_time`")
+    @Field(name = "record_time")
     private Date recordTime;
 
     /**
@@ -86,6 +86,6 @@ public class LoginLog {
      */
     @ApiModelProperty(value = "创建时间", example = "2021-09-26 10:57:24", dataType = "date")
     @CreatedDate
-    @Field(name = "`create_time`")
+    @Field(name = "create_time")
     private Date createTime;
 }
