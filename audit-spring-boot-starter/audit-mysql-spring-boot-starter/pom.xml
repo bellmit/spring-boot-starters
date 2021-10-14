@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>audit-spring-boot-starter</artifactId>
-    <version>1.17.4</version>
+    <version>1.17.5</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>audit-mysql-spring-boot-starter</artifactId>
-  <version>1.17.4</version>
+  <version>1.17.5</version>
   <name>audit-mysql-spring-boot-starter</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -18,7 +18,7 @@
     <dependency>
       <groupId>org.shield</groupId>
       <artifactId>audit-common</artifactId>
-      <version>1.17.4</version>
+      <version>1.17.5</version>
     </dependency>
     <dependency>
       <groupId>org.shield</groupId>
