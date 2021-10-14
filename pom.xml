@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>spring-boot-starters</artifactId>
-  <version>1.17.5</version>
+  <version>1.17.6</version>
   <name>spring-boot-starters</name>
   <packaging>pom</packaging>
   <properties>
@@ -71,100 +71,100 @@
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>audit-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- 验证码常用组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>captcha-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- Crud常用组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>crud-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- Kafka 依赖 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>kafka-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- Mongo -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>mongo-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- Mybatis公用依赖 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- Mybatis公用依赖POM -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
         <type>pom</type>
       </dependency>
       <!-- Redis 缓存相关操作组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>redis-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- Redis 缓存相关操作组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>redis-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
         <type>pom</type>
       </dependency>
       <!-- Restful 相关组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>rest-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- Spring Security JWT -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>security-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- Swagger 文档生成 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>swagger-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- 微服务公用依赖 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>service-spring-cloud-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- 微服务公用依赖 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>service-spring-cloud-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
         <type>pom</type>
       </dependency>
       <!-- 验证器组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>validation-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!-- 微盟组件 -->
       <dependency>
         <groupId>org.shield</groupId>
         <artifactId>weimob-spring-boot-starter</artifactId>
-        <version>1.17.5</version>
+        <version>1.17.6</version>
       </dependency>
       <!--Spring Cloud 相关依赖-->
       <dependency>
