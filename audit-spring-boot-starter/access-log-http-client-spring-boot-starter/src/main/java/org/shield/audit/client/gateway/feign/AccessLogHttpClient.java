@@ -16,8 +16,7 @@ public interface AccessLogHttpClient {
      * 提交访问日志
      *
      * @param form
-     * @return
      */
     @PostMapping("/logs/access-logs")
-    AccessLogForm createAccesLogs(@RequestBody AccessLogForm form);
+    void createAccesLogs(@RequestBody AccessLogForm form);
 }

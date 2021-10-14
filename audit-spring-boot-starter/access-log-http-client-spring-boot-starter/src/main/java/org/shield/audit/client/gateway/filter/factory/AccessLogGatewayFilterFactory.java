@@ -1,10 +1,15 @@
 package org.shield.audit.client.gateway.filter.factory;
 
+import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR;
+
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.shield.audit.client.gateway.feign.AccessLogHttpClient;
 import org.shield.audit.client.gateway.model.AccessLogForm;
@@ -19,6 +24,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
 
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.http.useragent.UserAgent;
@@ -57,13 +63,16 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
             if (config.getExcludes().stream().anyMatch(e -> url.matches(e))) {
                 return chain.filter(exchange);
             }
-            submitAccessLog(exchange.getRequest());
+            submitAccessLog(exchange);
             return chain.filter(exchange);
         }, 100);
     }
 
     @Async
-    private void submitAccessLog(ServerHttpRequest request) {
+    private void submitAccessLog(ServerWebExchange exchange) {
+        Set<URI> uris = exchange.getAttributeOrDefault(GATEWAY_ORIGINAL_REQUEST_URL_ATTR, Collections.emptySet());
+        ServerHttpRequest request = exchange.getRequest();
+        String uri = (uris.isEmpty()) ? null : uris.iterator().next().getPath();
         String userId = request.getHeaders().getFirst(AUTH_USER_ID);
         String userName = request.getHeaders().getFirst("auth-userName");
         String tenant = request.getHeaders().getFirst("auth-userName");
@@ -85,7 +94,7 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
         form.setOperatorId(userId);
         form.setOperatorName(userName);
         form.setRecordTime(new Date());
-        form.setUrl(request.getURI().getPath());
+        form.setUrl(uri != null ? uri : request.getURI().getPath());
 
         AccessLogHttpClient accessLogHttpClient = context.getBean(AccessLogHttpClient.class);
 
@@ -98,7 +107,7 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
         });
     }
 
-    public static String getClientIpByHeader(ServerHttpRequest request) {
+    private static String getClientIpByHeader(ServerHttpRequest request) {
         String[] headers = { "X-Forwarded-For", "X-Real-IP", "Proxy-Client-IP", "WL-Proxy-Client-IP", "HTTP_CLIENT_IP",
                 "HTTP_X_FORWARDED_FOR" };
         String ip;
@@ -136,7 +145,7 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
         private List<String> excludes = new ArrayList<>();
 
         public Config() {
-        };
+        }
 
         public Config(String excludes) {
             super();
