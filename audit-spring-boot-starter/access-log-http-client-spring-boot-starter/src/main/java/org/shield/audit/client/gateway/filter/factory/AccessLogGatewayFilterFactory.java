@@ -3,6 +3,7 @@ package org.shield.audit.client.gateway.filter.factory;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -84,6 +85,7 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
         form.setRequestParams(getRequestBody(request));
         form.setOperatorId(userId);
         form.setOperatorName(userName);
+        form.setRecordTime(new Date());
         form.setUrl(request.getURI().toString());
 
         AccessLogHttpClient accessLogHttpClient = context.getBean(AccessLogHttpClient.class);
