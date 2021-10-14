@@ -15,6 +15,7 @@ import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFac
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.task.AsyncTaskExecutor;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -76,11 +77,15 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
         form.setBrowser(ua.getBrowser().toString() + " " + ua.getVersion());
         form.setOs(ua.getOs().toString());
         form.setRequestMethod(method);
-        form.setRequestParams(getRequestBody(request));
+        if (HttpMethod.GET.equals(request.getMethod())) {
+            form.setRequestParams(request.getQueryParams().toString());
+        } else {
+            form.setRequestParams(getRequestBody(request));
+        }
         form.setOperatorId(userId);
         form.setOperatorName(userName);
         form.setRecordTime(new Date());
-        form.setUrl(request.getURI().toString());
+        form.setUrl(request.getURI().getPath());
 
         AccessLogHttpClient accessLogHttpClient = context.getBean(AccessLogHttpClient.class);
 
