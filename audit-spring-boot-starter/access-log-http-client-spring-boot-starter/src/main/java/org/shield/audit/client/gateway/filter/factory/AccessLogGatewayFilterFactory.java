@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
 
 import org.shield.audit.client.gateway.feign.AccessLogHttpClient;
 import org.shield.audit.client.gateway.model.AccessLogForm;
@@ -22,11 +20,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import cn.hutool.core.net.NetUtil;
-import cn.hutool.core.thread.NamedThreadFactory;
-import cn.hutool.core.thread.ThreadFactoryBuilder;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 
 /**
@@ -35,7 +30,6 @@ import reactor.core.publisher.Flux;
  * @author zacksleo@gmail.com
  */
 @Component
-@Slf4j
 public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<AccessLogGatewayFilterFactory.Config> {
 
     @Autowired
