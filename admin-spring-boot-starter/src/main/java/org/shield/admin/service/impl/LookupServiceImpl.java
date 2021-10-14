@@ -21,6 +21,6 @@ public class LookupServiceImpl extends AbstractService<Lookup> implements Lookup
     @Override
     public List<Lookup> list(LookupQueryForm form) {
         Condition condition = form.toCondition();
-        return condition.getOredCriteria().isEmpty() ? findAll() : findByCondition(condition);
+        return condition.getOredCriteria().isEmpty() || !condition.getOredCriteria().get(0).isValid() ? findAll() : findByCondition(condition);
     }
 }

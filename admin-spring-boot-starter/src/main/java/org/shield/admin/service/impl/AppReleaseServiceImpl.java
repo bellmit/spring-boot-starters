@@ -22,6 +22,7 @@ public class AppReleaseServiceImpl extends AbstractService<AppRelease> implement
     @Override
     public List<AppRelease> list(AppReleaseQueryForm form) {
         Condition condition = form.toCondition();
-        return condition.getOredCriteria().isEmpty() ? findAll() : findByCondition(condition);
+        return condition.getOredCriteria().isEmpty() || !condition.getOredCriteria().get(0).isValid() ? findAll()
+                : findByCondition(condition);
     }
 }

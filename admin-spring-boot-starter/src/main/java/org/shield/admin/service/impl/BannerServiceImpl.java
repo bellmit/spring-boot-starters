@@ -21,6 +21,7 @@ public class BannerServiceImpl extends AbstractService<Banner> implements Banner
     @Override
     public List<Banner> list(BannerQueryForm form) {
         Condition condition = form.toCondition();
-        return condition.getOredCriteria().isEmpty() ? findAll() : findByCondition(condition);
+        return condition.getOredCriteria().isEmpty() || !condition.getOredCriteria().get(0).isValid() ? findAll()
+                : findByCondition(condition);
     }
 }

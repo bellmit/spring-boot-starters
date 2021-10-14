@@ -86,7 +86,7 @@ package:
 	@ $(MVN) $(MVNFLAGS) package
 
 deploy-staging:
-	@ $(MVN) clean deploy -Dcheckstyle.skip -Dpmd.skip
+	@ $(MVN) clean deploy -Dcheckstyle.skip -Dpmd.skip -T 1C
 
 migrate:
 	@echo migrate database
