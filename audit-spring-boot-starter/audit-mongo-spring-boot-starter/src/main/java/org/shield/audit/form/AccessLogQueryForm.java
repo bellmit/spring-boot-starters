@@ -56,4 +56,12 @@ public class AccessLogQueryForm extends PageableQuery {
      */
     @ApiModelProperty(value = "结束时间", example = "2021-09-26 10:57:24", dataType = "date")
     private Date endTime;
+
+    @Override
+    public String getOrderBy() {
+        if (super.getOrderBy() == null) {
+            return "id desc";
+        }
+        return super.getOrderBy();
+    }
 }
