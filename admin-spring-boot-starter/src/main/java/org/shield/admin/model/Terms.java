@@ -32,7 +32,6 @@ public class Terms {
     @GeneratedValue(generator = "JDBC")
     @ApiModelProperty("ID")
     @Column(name = "`id`")
-    @JsonIgnore
     private Integer id;
 
     /**
