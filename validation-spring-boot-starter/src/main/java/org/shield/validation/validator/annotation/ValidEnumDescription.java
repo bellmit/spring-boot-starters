@@ -5,7 +5,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 import org.shield.validation.contract.IntegerEnum;
-import org.shield.validation.validator.IntegerEnumValidator;
+import org.shield.validation.validator.EnumDescriptionValidator;
 
 /**
  * 枚举类型校验 枚举类型需要实现接口 BaseEnum
@@ -16,8 +16,8 @@ import org.shield.validation.validator.IntegerEnumValidator;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-@Constraint(validatedBy = IntegerEnumValidator.class)
-public @interface ValidIntegerEnum {
+@Constraint(validatedBy = EnumDescriptionValidator.class)
+public @interface ValidEnumDescription {
 
     String message() default "字段取值不合法";
 
