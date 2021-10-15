@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "配置")
+@Api(tags = "通用: 配置")
 @RestController("AdminConsoleConfigController")
 @RequestMapping("configs")
 public class ConfigController {
