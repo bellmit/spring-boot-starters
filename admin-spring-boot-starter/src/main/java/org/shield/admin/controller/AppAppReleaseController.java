@@ -16,11 +16,11 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
 /**
- * 版本发布
+ * 版本查询
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "版本发布")
+@Api(tags = "App: 版本查询")
 @RestController("AppAppReleaseController")
 @RequestMapping("app/app-releases")
 @Validated
