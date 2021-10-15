@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiOperation;
  *
  * @author zacksleo@gmail.com
  */
-@Api(tags = "版本发布")
+@Api(tags = "通用: 版本发布")
 @RestController("AdminConsoleAppReleaseController")
 @RequestMapping("app-releases")
 public class AppReleaseController {
