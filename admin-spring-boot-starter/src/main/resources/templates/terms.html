@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no">
+  <title th:text="${name}"></title>
+  <script type="text/javascript">
+    var oHtml = document.getElementsByTagName('html')[0];
+    var oW = oHtml.getBoundingClientRect().width;
+    oHtml.style.fontSize = oW / 12 + 'px';
+        //360被12整除，30px=1rem,像素比：2
+  </script>
+  <style type="text/css">
+    body {
+      margin: 0;
+      background-color: #fff;
+      font-family: Hiragino Sans GB W3;
+      font-size: 32px;
+    }
+
+    p,
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      padding: .42rem 1rem 1rem;
+    }
+
+    h1 {
+      font-size: .42rem;
+      color: #8c9696;
+      font-weight: normal;
+      margin-top: .58rem;
+      margin-bottom: .33rem;
+    }
+
+    p {
+      font-size: .35rem;
+      color: #8c9696;
+      line-height: .5rem;
+    }
+
+    .divider {
+      height: 0.2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <h1 th:text="${name}"></h1>
+    <div th:utext="${content}"></div>
+  </section>
+</body>
+
+</html>
