@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 版本发布
@@ -30,7 +31,7 @@ public class AppAppReleaseController {
 
     @ApiOperation("获取App最新版本")
     @GetMapping("/{catalog}/latest")
-    public AppRelease getLatestVersion(@PathVariable @ValidEnumDescription(AppReleaseCatalog.class) String catalog) {
+    public AppRelease getLatestVersion(@ApiParam(value="平台: android/ios", example = "android") @PathVariable @ValidEnumDescription(AppReleaseCatalog.class) String catalog) {
         return appReleaseMapper.findLatestByCatalog(AppReleaseCatalog.fromDescription(catalog).value());
     }
 }
