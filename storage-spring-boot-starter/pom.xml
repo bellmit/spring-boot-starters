@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>spring-boot-starters</artifactId>
-    <version>1.19.1</version>
+    <version>1.20.0</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>storage-spring-boot-starter</artifactId>
-  <version>1.19.1</version>
+  <version>1.20.0</version>
   <name>storage-spring-boot-starter</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
