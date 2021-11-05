@@ -1,21 +1,22 @@
 package org.shield.security.utils;
 
+import java.util.Collections;
+import java.util.Date;
+import java.util.Map;
+
+import javax.crypto.SecretKey;
+
+import org.shield.security.user.User;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.DecodingException;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.util.StringUtils;
-import javax.crypto.SecretKey;
-import org.shield.security.exception.InvalidTokenException;
-import org.shield.security.user.User;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author zacksleo@gmail.com
@@ -44,6 +45,7 @@ public class JwtTokenUtils {
 
     /**
      * 创建 Token，并设置自定义字段
+     *
      * @param user
      * @param claims
      * @return
@@ -52,10 +54,9 @@ public class JwtTokenUtils {
         final Date createdDate = new Date();
         final Date expirationDate = new Date(createdDate.getTime() + expiration * 1000);
         JwtBuilder jwtBuilder = Jwts.builder().setHeaderParam("type", TOKEN_TYPE)
-        .signWith(secretKey, SignatureAlgorithm.HS256).claim("username", user.getUsername())
-        .claim("uid", user.getUid())
-        .setIssuer(user.getCatalog()).claim("name", user.getName()).setIssuedAt(createdDate)
-        .setSubject(user.getUserId()).setExpiration(expirationDate);
+                .signWith(secretKey, SignatureAlgorithm.HS256).claim("username", user.getUsername())
+                .claim("uid", user.getUid()).setIssuer(user.getCatalog()).claim("name", user.getName())
+                .setIssuedAt(createdDate).setSubject(user.getUserId()).setExpiration(expirationDate);
 
         for (Map.Entry<String, String> entry : claims.entrySet()) {
             jwtBuilder.claim(entry.getKey(), entry.getValue());
@@ -64,20 +65,19 @@ public class JwtTokenUtils {
         return jwtBuilder.compact();
     }
 
-    public Claims getTokenBody(String token) throws Exception {
-        try {
-            if (StringUtils.isEmpty(token)) {
-                throw new InvalidTokenException("Token为空");
-            }
-            return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
-        } catch (DecodingException e) {
-            throw new InvalidTokenException("Token格式错误");
-        } catch (ExpiredJwtException e) {
-            throw new InvalidTokenException("Token已过期");
-        } catch (IllegalArgumentException e) {
-            throw new InvalidTokenException("Token 非法");
-        } catch (Exception e) {
-            throw new InvalidTokenException("Token格式错误");
-        }
+    /**
+     *
+     * @param token
+     * @return
+     * @throws IllegalArgumentException Token不能为空
+     * @throws MalformedJwtException    Token格式错误
+     * @throws DecodingException        Token格式错误
+     * @throws ExpiredJwtException      Token已过期
+     * @throws Exception                Token格式错误
+     * @throws SignatureException
+     * @throws UnsupportedJwtException
+     */
+    public Claims getTokenBody(String token) {
+        return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
     }
 }
