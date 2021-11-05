@@ -19,6 +19,7 @@
     <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
     <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
     <spring-boot-admin.version>2.3.0</spring-boot-admin.version>
+    <springfox.version>3.0.0</springfox.version>
     <tk.mybatis.springboot.version>2.1.5</tk.mybatis.springboot.version>
     <tk.mybatis.version>4.1.5</tk.mybatis.version>
   </properties>
@@ -40,6 +41,7 @@
     <module>swagger-spring-boot-starter</module>
     <module>validation-spring-boot-starter</module>
     <module>weimob-spring-boot-starter</module>
+    <module>fadada-spring-boot-starter</module>
   </modules>
   <dependencyManagement>
     <dependencies>
