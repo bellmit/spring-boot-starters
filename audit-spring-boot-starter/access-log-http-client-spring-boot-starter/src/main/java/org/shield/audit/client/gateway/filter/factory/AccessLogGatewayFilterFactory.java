@@ -60,7 +60,7 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
             }
             String url = exchange.getRequest().getURI().getPath();
 
-            if (config.getExcludes().stream().anyMatch(e -> url.matches(e))) {
+            if (config.getExcludes().stream().anyMatch(url::matches)) {
                 return chain.filter(exchange);
             }
             submitAccessLog(exchange);
@@ -132,7 +132,6 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
         body.subscribe(buffer -> {
             byte[] bytes = new byte[buffer.readableByteCount()];
             buffer.read(bytes);
-            // DataBufferUtils.release(buffer);
             String bodyString = new String(bytes, StandardCharsets.UTF_8);
             sb.append(bodyString);
         });

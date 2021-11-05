@@ -5,12 +5,16 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 脱敏处理类
  *
+ * @author zacksleo <zacksleo@gmail.com>
+ *
  */
 public class SensitiveUtil {
 
-    public final static String COMMON = "******";
-    private final static String CLASSIFIED = "保密";
-    private final static String SIX_STAR = "******";
+    private SensitiveUtil() {}
+
+    public static final String COMMON = "******";
+    private static final String CLASSIFIED = "保密";
+    private static final String SIX_STAR = "******";
 
     /**
      * 对手机号的处理
