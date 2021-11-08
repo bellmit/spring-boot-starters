@@ -1,5 +1,7 @@
 package org.shield.fadada.sdk.client.core.request;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.shield.fadada.sdk.annatation.Sha1Param;
 import feign.form.FormProperty;
 import lombok.Data;
@@ -8,6 +10,7 @@ import lombok.Data;
  * @author zacksleo <zacksleo@gmail.com>
  */
 @Data
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class AddSignatureRequest {
 
     /**

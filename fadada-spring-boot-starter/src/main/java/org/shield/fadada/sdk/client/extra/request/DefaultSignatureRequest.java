@@ -1,6 +1,8 @@
 package org.shield.fadada.sdk.client.extra.request;
 
 import javax.validation.constraints.NotBlank;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import org.shield.fadada.sdk.annatation.Sha1Param;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,6 +15,7 @@ import lombok.Data;
  */
 @ApiModel
 @Data
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class DefaultSignatureRequest {
 
     /**
