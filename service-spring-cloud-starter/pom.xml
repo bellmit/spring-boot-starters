@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>spring-boot-starters</artifactId>
-    <version>1.21.0</version>
+    <version>1.21.1</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>service-spring-cloud-starter</artifactId>
-  <version>1.21.0</version>
+  <version>1.21.1</version>
   <name>service-spring-cloud-starter</name>
   <description>微服务通用依赖组件</description>
   <dependencies>

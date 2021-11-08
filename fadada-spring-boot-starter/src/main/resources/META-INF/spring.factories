@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.shield.fadada.sdk.autoconfigure.CaptchaAutoConfiguration
+org.shield.fadada.sdk.autoconfigure.FadadaAutoConfiguration

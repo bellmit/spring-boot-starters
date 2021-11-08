@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>spring-boot-starters</artifactId>
-    <version>1.21.0</version>
+    <version>1.21.1</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>validation-spring-boot-starter</artifactId>
-  <version>1.21.0</version>
+  <version>1.21.1</version>
   <name>validation-spring-boot-starter</name>
   <description>验证器通用组件</description>
   <dependencies>
