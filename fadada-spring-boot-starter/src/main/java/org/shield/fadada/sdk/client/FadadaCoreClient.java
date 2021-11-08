@@ -7,6 +7,7 @@ import org.shield.fadada.sdk.annatation.HasAffixParam;
 import org.shield.fadada.sdk.annatation.HasMd5Param;
 import org.shield.fadada.sdk.annatation.HasSha1Param;
 import org.shield.fadada.sdk.annatation.Sha1Param;
+import org.shield.fadada.sdk.client.core.request.AddSignatureRequest;
 import org.shield.fadada.sdk.client.core.request.ExtSignAutoRequest;
 import org.shield.fadada.sdk.client.core.request.GenerateContractRequest;
 import org.shield.fadada.sdk.client.core.request.PersonVerifyUrlRequest;
@@ -78,13 +79,11 @@ public interface FadadaCoreClient {
      *
      * @see <a href="https://open.fadada.com/#/portal/documentCenter/ZLZRHIWBZK/FRNXNT42GGE1LPSP">印章上传</a>
      *
-     * @param customerId 客户编号，注册账号时返回
-     * @param base64 签章图片base64, 上传的base64码需要去除前缀data:image/jpg;base64
+     * @param request
      * @return
      */
     @PostMapping("add_signature.api")
-    public AddSignatureResponse addSignature(@Sha1Param("customer_id") String customerId,
-            @RequestParam("signature_img_base64") String base64);
+    public AddSignatureResponse addSignature(@HasSha1Param AddSignatureRequest request);
 
     /**
      * 自定义印章
