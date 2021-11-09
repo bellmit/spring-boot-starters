@@ -41,8 +41,8 @@ public interface FadadaCoreClient {
      * 需要参数 sha1 签名的参数，使用 @Sha1Param 注解标识 <br/>
      * 需要参数 md5 签名的参数，使用 @HasMd5Param 注解标识
      *
-     * @param openid
-     * @param accountType
+     * @param openid 用户在接入方的唯一标识 字符（len<=64）不支持以下特殊字符：'!<>^\
+     * @param accountType 1:个人 2:企业
      * @return
      */
     @PostMapping("account_register.api")
