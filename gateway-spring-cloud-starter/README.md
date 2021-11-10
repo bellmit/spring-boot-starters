@@ -1,5 +1,31 @@
 # 微服务网关
 
+## Swagger 文档聚合
+
+cat application-swagger.yml
+
+```yaml
+swagger:
+  docs:
+    services:
+      - name: 系统管理
+        url: /admin
+```
+
+cat application-filters.yml
+
+```yaml
+filters:
+  # AccessToken 验证
+  access-token:
+    # 跳过 Token 验证的路由, 使用 String.matches 中的表达式
+    excludes:
+      # swagger
+      - /.*/swagger-ui/.*
+      - /.*/swagger-resources.*
+      - /.*/v3/api-docs
+```
+
 ## 全局过滤器
 
 ### WipeOutAuthEader
