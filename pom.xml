@@ -30,7 +30,7 @@
     <module>captcha-spring-boot-starter</module>
     <module>crud-spring-boot-starter</module>
     <module>fadada-spring-boot-starter</module>
-    <module>gateway-spirng-cloud-starter</module>
+    <module>gateway-spring-cloud-starter</module>
     <module>json-spring-boot-starter</module>
     <module>kafka-spring-boot-starter</module>
     <module>mongo-spring-boot-starter</module>
