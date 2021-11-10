@@ -29,6 +29,8 @@
     <module>audit-spring-boot-starter</module>
     <module>captcha-spring-boot-starter</module>
     <module>crud-spring-boot-starter</module>
+    <module>fadada-spring-boot-starter</module>
+    <module>gateway-spirng-cloud-starter</module>
     <module>json-spring-boot-starter</module>
     <module>kafka-spring-boot-starter</module>
     <module>mongo-spring-boot-starter</module>
@@ -41,7 +43,6 @@
     <module>swagger-spring-boot-starter</module>
     <module>validation-spring-boot-starter</module>
     <module>weimob-spring-boot-starter</module>
-    <module>fadada-spring-boot-starter</module>
   </modules>
   <dependencyManagement>
     <dependencies>
