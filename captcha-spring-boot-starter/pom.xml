@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>spring-boot-starters</artifactId>
-    <version>1.23.0</version>
+    <version>1.24.0</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>captcha-spring-boot-starter</artifactId>
-  <version>1.23.0</version>
+  <version>1.24.0</version>
   <name>captcha-spring-boot-starter</name>
   <url>http://maven.apache.org</url>
   <properties>
