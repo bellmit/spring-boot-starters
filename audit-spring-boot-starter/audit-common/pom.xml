@@ -20,8 +20,9 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.shield</groupId>
-      <artifactId>swagger-spring-boot-starter</artifactId>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-boot-starter</artifactId>
+      <version>${springfox.version}</version>
     </dependency>
     <!-- 通用操作日志 -->
     <dependency>

@@ -24,10 +24,11 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-mongodb</artifactId>
     </dependency>
-    <!-- swagger -->
+    <!-- Springfox Swagger -->
     <dependency>
-      <groupId>org.shield</groupId>
-      <artifactId>swagger-spring-boot-starter</artifactId>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-boot-starter</artifactId>
+      <version>${springfox.version}</version>
     </dependency>
   </dependencies>
 </project>

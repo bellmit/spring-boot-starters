@@ -23,9 +23,11 @@
       <groupId>org.shield</groupId>
       <artifactId>rest-spring-boot-starter</artifactId>
     </dependency>
+    <!-- Springfox Swagger -->
     <dependency>
-      <groupId>org.shield</groupId>
-      <artifactId>swagger-spring-boot-starter</artifactId>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-boot-starter</artifactId>
+      <version>${springfox.version}</version>
     </dependency>
     <dependency>
       <groupId>com.pig4cloud.plugin</groupId>
