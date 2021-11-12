@@ -30,6 +30,7 @@ import cn.hutool.core.net.NetUtil;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * 记录用户访问日志
@@ -63,8 +64,7 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
             if (config.getExcludes().stream().anyMatch(url::matches)) {
                 return chain.filter(exchange);
             }
-            submitAccessLog(exchange);
-            return chain.filter(exchange);
+            return chain.filter(exchange).then(Mono.fromRunnable(() -> submitAccessLog(exchange)));
         }, 100);
     }
 
@@ -108,8 +108,8 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
     }
 
     private static String getClientIpByHeader(ServerHttpRequest request) {
-        String[] headers = { "X-Forwarded-For", "X-Real-IP", "Proxy-Client-IP", "WL-Proxy-Client-IP", "HTTP_CLIENT_IP",
-                "HTTP_X_FORWARDED_FOR" };
+        String[] headers = {"X-Forwarded-For", "X-Real-IP", "Proxy-Client-IP", "WL-Proxy-Client-IP", "HTTP_CLIENT_IP",
+                "HTTP_X_FORWARDED_FOR"};
         String ip;
         for (String header : headers) {
             ip = request.getHeaders().getFirst(header);
@@ -143,8 +143,7 @@ public class AccessLogGatewayFilterFactory extends AbstractGatewayFilterFactory<
 
         private List<String> excludes = new ArrayList<>();
 
-        public Config() {
-        }
+        public Config() {}
 
         public Config(String excludes) {
             super();
