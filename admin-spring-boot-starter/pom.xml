@@ -66,6 +66,11 @@
       <groupId>org.shield</groupId>
       <artifactId>security-spring-boot-starter</artifactId>
     </dependency>
+    <!-- 短信 -->
+    <dependency>
+      <groupId>org.shield</groupId>
+      <artifactId>sms-spring-boot-starter</artifactId>
+    </dependency>
     <!-- Validation 通用组件 -->
     <dependency>
       <groupId>org.shield</groupId>
