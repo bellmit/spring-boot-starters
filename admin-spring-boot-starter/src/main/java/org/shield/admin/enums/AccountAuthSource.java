@@ -1,13 +1,17 @@
 package org.shield.admin.enums;
 
-import java.util.Objects;
+import org.shield.validation.contract.IntegerEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * 账号认证来源
  *
  * @author zacksleo <zacksleo@gmail.com>
  */
-public enum AccountAuthSource implements BaseEnum<Integer> {
+@Getter
+@AllArgsConstructor
+public enum AccountAuthSource implements IntegerEnum {
 
 
     /**
@@ -45,32 +49,7 @@ public enum AccountAuthSource implements BaseEnum<Integer> {
     private Integer value;
     private String description;
 
-    AccountAuthSource(Integer value, String description) {
-        this.value = value;
-        this.description = description;
-    }
-
-    @Override
-    public String description() {
-        return description;
-    }
-
-    @Override
-    public Integer value() {
-        return value;
-    }
-
-    @Override
-    public String toString() {
-        return name().toLowerCase();
-    }
-
-    public static AccountAuthSource fromValue(Integer value) {
-        for (AccountAuthSource statusEnum : AccountAuthSource.values()) {
-            if (Objects.equals(value, statusEnum.value())) {
-                return statusEnum;
-            }
-        }
-        throw new IllegalArgumentException();
+    public static AccountAuthSource valueOf(Integer value) {
+        return IntegerEnum.valueOf(AccountAuthSource.class, value);
     }
 }

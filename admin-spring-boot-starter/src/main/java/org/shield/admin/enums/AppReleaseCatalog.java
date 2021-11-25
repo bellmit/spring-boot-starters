@@ -1,12 +1,14 @@
 package org.shield.admin.enums;
 
-import java.util.Objects;
-
 import org.shield.validation.contract.IntegerEnum;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * @author zacksleo <zacksleo@gmail.com>
  */
+@Getter
+@AllArgsConstructor
 public enum AppReleaseCatalog implements IntegerEnum {
 
     // ios
@@ -17,36 +19,11 @@ public enum AppReleaseCatalog implements IntegerEnum {
     private Integer value;
     private String description;
 
-    AppReleaseCatalog(Integer value, String description) {
-        this.value = value;
-        this.description = description;
+    public static AppReleaseCatalog valueOf(Integer value) {
+        return IntegerEnum.valueOf(AppReleaseCatalog.class, value);
     }
 
-    @Override
-    public Integer value() {
-        return value;
-    }
-
-    @Override
-    public String description() {
-        return description;
-    }
-
-    public static AppReleaseCatalog fromValue(Integer value) {
-        for (AppReleaseCatalog statusEnum : values()) {
-            if (Objects.equals(value, statusEnum.value())) {
-                return statusEnum;
-            }
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public static AppReleaseCatalog fromDescription(String value) {
-        for (AppReleaseCatalog statusEnum : values()) {
-            if (Objects.equals(value, statusEnum.description())) {
-                return statusEnum;
-            }
-        }
-        throw new IllegalArgumentException();
+    public static AppReleaseCatalog descriptionOf(String value) {
+        return IntegerEnum.descriptionOf(AppReleaseCatalog.class, value);
     }
 }

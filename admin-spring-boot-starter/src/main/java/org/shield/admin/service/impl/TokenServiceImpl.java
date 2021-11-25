@@ -2,7 +2,6 @@ package org.shield.admin.service.impl;
 
 import org.shield.admin.model.Admin;
 import org.shield.admin.model.AdminAccountAuth;
-import javax.validation.Valid;
 import org.shield.admin.enums.AccountAuthSource;
 import org.shield.admin.form.PasswordLoginForm;
 import org.shield.admin.form.SmsLoginForm;
@@ -39,7 +38,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public TokenVo create(PasswordLoginForm form) throws Exception {
-        AdminAccountAuth auth = mapper.findAuth(AccountAuthSource.USERNAME.value(), form.getUsername());
+        AdminAccountAuth auth = mapper.findAuth(AccountAuthSource.USERNAME.getValue(), form.getUsername());
         if (auth == null) {
             throw new NotFoundException("用户不存在");
         }
@@ -59,7 +58,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public TokenVo create(SmsLoginForm form) throws Exception {
-        AdminAccountAuth auth = mapper.findAuth(AccountAuthSource.PHONE.value(), form.getPhone());
+        AdminAccountAuth auth = mapper.findAuth(AccountAuthSource.PHONE.getValue(), form.getPhone());
         if (auth == null) {
             throw new NotFoundException("用户不存在");
         }
@@ -71,7 +70,7 @@ public class TokenServiceImpl implements TokenService {
             throw new BadRequestException("该用户已停用");
         }
         // 查询用户名信息
-        AdminAccountAuth usernameAuth = mapper.findByIdAndSource(AccountAuthSource.USERNAME.value(),
+        AdminAccountAuth usernameAuth = mapper.findByIdAndSource(AccountAuthSource.USERNAME.getValue(),
                 auth.getAccountId());
 
         User appUser = admin.toSecurityUser();

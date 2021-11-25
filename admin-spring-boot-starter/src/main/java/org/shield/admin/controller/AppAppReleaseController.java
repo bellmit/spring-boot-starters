@@ -32,6 +32,6 @@ public class AppAppReleaseController {
     @ApiOperation("获取App最新版本")
     @GetMapping("/{catalog}/latest")
     public AppRelease getLatestVersion(@ApiParam(value="平台: android/ios", example = "android") @PathVariable @ValidEnumDescription(AppReleaseCatalog.class) String catalog) {
-        return appReleaseMapper.findLatestByCatalog(AppReleaseCatalog.fromDescription(catalog).value());
+        return appReleaseMapper.findLatestByCatalog(AppReleaseCatalog.descriptionOf(catalog).getValue());
     }
 }

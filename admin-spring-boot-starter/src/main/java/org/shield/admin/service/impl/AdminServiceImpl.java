@@ -15,7 +15,7 @@ import org.shield.admin.mapper.AdminAccountAuthMapper;
 import org.shield.admin.model.AdminAccountAuth;
 import org.shield.admin.repository.AccountAuthRepository;
 import org.shield.admin.vo.AdminVo;
-import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.page.PageMethod;
 import org.shield.admin.service.AdminAccountAuthService;
 import org.shield.admin.service.AdminService;
 import org.shield.crud.service.AbstractService;
@@ -75,8 +75,8 @@ public class AdminServiceImpl extends AbstractService<Admin> implements AdminSer
     public AdminForm update(AdminForm form) {
         String adminId = form.getAccountId();
         update(adminId, form.toAdmin());
-        updateAuth(form.getAccountId(), AccountAuthSource.USERNAME.value(), form.toUsernameAuth());
-        updateAuth(form.getAccountId(), AccountAuthSource.PHONE.value(), form.toPhoneAuth());
+        updateAuth(form.getAccountId(), AccountAuthSource.USERNAME.getValue(), form.toUsernameAuth());
+        updateAuth(form.getAccountId(), AccountAuthSource.PHONE.getValue(), form.toPhoneAuth());
         return form;
     }
 
@@ -113,7 +113,7 @@ public class AdminServiceImpl extends AbstractService<Admin> implements AdminSer
             }
             criteria.andIn("adminId", accounts);
         }
-        PageHelper.startPage(form);
+        PageMethod.startPage(form);
         List<Admin> list = criteria.getAllCriteria().size() < 1 ? findAll() : findByCondition(condition);
         List<AdminAccountAuth> auths =
                 authRepository.findAuthsByAccounts(list.stream().map(Admin::getAdminId).collect(Collectors.toSet()));

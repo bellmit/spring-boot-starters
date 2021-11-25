@@ -76,7 +76,7 @@ public class AdminForm {
     public AdminAccountAuth toUsernameAuth() {
         AdminAccountAuth auth = new AdminAccountAuth();
         auth.setAccountId(getAccountId());
-        auth.setSource(AccountAuthSource.USERNAME.value());
+        auth.setSource(AccountAuthSource.USERNAME.getValue());
         auth.setSourceId(getUsername());
         if (!ObjectUtils.isEmpty(getPassword())) {
             auth.setSourceToken(DigestUtil.bcrypt(getPassword()));
@@ -87,7 +87,7 @@ public class AdminForm {
     public AdminAccountAuth toPhoneAuth() {
         AdminAccountAuth auth = new AdminAccountAuth();
         auth.setAccountId(getAccountId());
-        auth.setSource(AccountAuthSource.PHONE.value());
+        auth.setSource(AccountAuthSource.PHONE.getValue());
         auth.setSourceId(getPhone());
         return auth;
     }

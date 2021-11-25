@@ -27,7 +27,7 @@ public class PasswordServiceImpl implements PasswordService {
 
     @Override
     public void change(String accountId, PasswordChangeForm form) {
-        AdminAccountAuth auth = mapper.findByIdAndSource(AccountAuthSource.USERNAME.value(), accountId);
+        AdminAccountAuth auth = mapper.findByIdAndSource(AccountAuthSource.USERNAME.getValue(), accountId);
         if (auth == null) {
             throw new NotFoundException("用户不存在");
         }

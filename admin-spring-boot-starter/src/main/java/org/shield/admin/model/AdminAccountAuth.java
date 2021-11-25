@@ -98,7 +98,7 @@ public class AdminAccountAuth {
      * @return
      */
     public boolean isPhone() {
-        return AccountAuthSource.PHONE.value().equals(source);
+        return AccountAuthSource.PHONE.getValue().equals(source);
     }
 
     /**
@@ -107,6 +107,6 @@ public class AdminAccountAuth {
      * @return
      */
     public boolean isUsername() {
-        return AccountAuthSource.USERNAME.value().equals(source);
+        return AccountAuthSource.USERNAME.getValue().equals(source);
     }
 }

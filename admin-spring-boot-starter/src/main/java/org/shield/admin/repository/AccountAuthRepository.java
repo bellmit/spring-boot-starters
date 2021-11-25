@@ -53,8 +53,8 @@ public class AccountAuthRepository {
      * @return
      */
     public Set<String> findAccounsByUsernamePhone(String username, String phone) {
-        Set<String> usernameSet = findAccountsBySource(AccountAuthSource.USERNAME.value(), username);
-        Set<String> phoneSet = findAccountsBySource(AccountAuthSource.PHONE.value(), phone);
+        Set<String> usernameSet = findAccountsBySource(AccountAuthSource.USERNAME.getValue(), username);
+        Set<String> phoneSet = findAccountsBySource(AccountAuthSource.PHONE.getValue(), phone);
 
         if (!ObjectUtils.isEmpty(username) && !ObjectUtils.isEmpty(phone)) {
             return CollUtil.intersectionDistinct(usernameSet, phoneSet);
@@ -70,12 +70,12 @@ public class AccountAuthRepository {
      */
     public List<AdminAccountAuth> findAuthsByAccounts(Set<String> accounts) {
         if(accounts.isEmpty()){
-            return new ArrayList<AdminAccountAuth>();
+            return new ArrayList<>();
         }
         Condition condition = new Condition(AdminAccountAuth.class);
         Criteria criteria = condition.createCriteria();
         criteria.andIn("accountId", accounts);
-        Integer[] arr = {AccountAuthSource.USERNAME.value(), AccountAuthSource.PHONE.value()};
+        Integer[] arr = {AccountAuthSource.USERNAME.getValue(), AccountAuthSource.PHONE.getValue()};
         criteria.andIn("source", Arrays.stream(arr).collect(Collectors.toList()));
         return authMapper.selectByCondition(condition);
     }
