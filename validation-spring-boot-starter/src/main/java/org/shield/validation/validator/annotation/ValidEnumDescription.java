@@ -8,7 +8,7 @@ import org.shield.validation.contract.IntegerEnum;
 import org.shield.validation.validator.EnumDescriptionValidator;
 
 /**
- * 枚举类型校验 枚举类型需要实现接口 BaseEnum
+ * 枚举类型校验 枚举类型需要实现接口 IntegerEnum
  *
  * @author zacksleo <zacksleo@gmail.com>
  */
