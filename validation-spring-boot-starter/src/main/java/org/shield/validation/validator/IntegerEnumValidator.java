@@ -32,7 +32,7 @@ public class IntegerEnumValidator implements ConstraintValidator<ValidIntegerEnu
             return;
         }
         for (Object object : enumConstants) {
-            values.add(((IntegerEnum) object).value());
+            values.add(((IntegerEnum) object).getValue());
         }
         showAllowValues = validEnum.showAllowValues();
         optional = validEnum.optional();

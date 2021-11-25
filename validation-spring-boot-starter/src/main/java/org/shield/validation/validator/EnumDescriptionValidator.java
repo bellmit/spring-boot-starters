@@ -32,7 +32,7 @@ public class EnumDescriptionValidator implements ConstraintValidator<ValidEnumDe
             return;
         }
         for (Object object : enumConstants) {
-            values.add(((IntegerEnum) object).description());
+            values.add(((IntegerEnum) object).getDescription());
         }
         showAllowValues = validEnum.showAllowValues();
         optional = validEnum.optional();
