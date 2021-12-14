@@ -40,5 +40,5 @@ public class QuerySignatureResponse {
     /**
      * 签章来源 0 平台上传 1 法大大生成
      */
-    private String signatureSource;
+    private Integer signatureSource;
 }
