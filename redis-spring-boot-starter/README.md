@@ -83,3 +83,12 @@ spring:
 ```java
  @Cacheable(value = "roomStateCache", key = "':' + #root.targetClass.getName() + ':' + #roomId")
 ```
+
+
+## 说明
+
+值为null时，不更新缓存
+
+```java
+@Cacheable(value = "roomStateCache@600", key = "':' + #root.targetClass.getName() + ':' + #roomId", unless="#result == null")
+```
