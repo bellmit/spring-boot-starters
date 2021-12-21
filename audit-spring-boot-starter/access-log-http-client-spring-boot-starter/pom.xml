@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>audit-spring-boot-starter</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>access-log-http-client-spring-boot-starter</artifactId>
-  <version>2.1.0</version>
+  <version>2.1.1</version>
   <name>access-log-http-client-spring-boot-starter</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

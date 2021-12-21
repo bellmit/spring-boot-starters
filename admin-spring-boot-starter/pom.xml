@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>spring-boot-starters</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>admin-spring-boot-starter</artifactId>
-  <version>2.1.0</version>
+  <version>2.1.1</version>
   <name>通用系统管理模块</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
