@@ -102,7 +102,7 @@ public class AccessTokenGatewayFilterFactory extends AbstractGatewayFilterFactor
                 return chain.filter(mutableExchange);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.printf("token 认证失败: %s", e.getMessage());
                 return tokenMissingResponse(exchange);
             }
 
