@@ -17,6 +17,8 @@ public class SmsProperties {
 
     private AliyunSmsProperties aliyun;
 
+    private TencentSmsProperties tencent;
+
     public String getDriver() {
         return driver;
     }
@@ -31,5 +33,13 @@ public class SmsProperties {
 
     public void setAliyun(AliyunSmsProperties aliyun) {
         this.aliyun = aliyun;
+    }
+
+    public TencentSmsProperties getTencent() {
+        return tencent;
+    }
+
+    public void setTencent(TencentSmsProperties tencent) {
+        this.tencent = tencent;
     }
 }
