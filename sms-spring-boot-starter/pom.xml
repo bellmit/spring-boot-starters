@@ -4,15 +4,17 @@
   <parent>
     <groupId>org.shield</groupId>
     <artifactId>spring-boot-starters</artifactId>
-    <version>2.1.1</version>
+    <version>2.2.0</version>
   </parent>
   <groupId>org.shield</groupId>
   <artifactId>sms-spring-boot-starter</artifactId>
-  <version>2.1.1</version>
+  <version>2.2.0</version>
   <name>sms-spring-boot-starter</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <aliyun.sdk.version>2.0.4</aliyun.sdk.version>
+    <tentcentcloud.sdk.version>3.1.422</tentcentcloud.sdk.version>
   </properties>
   <dependencies>
     <!-- Spring Web Service -->
@@ -24,13 +26,25 @@
     <dependency>
       <groupId>com.aliyun</groupId>
       <artifactId>dysmsapi20170525</artifactId>
-      <version>2.0.4</version>
+      <version>${aliyun.sdk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tencentcloudapi</groupId>
+      <artifactId>tencentcloud-sdk-java</artifactId>
+      <version>${tentcentcloud.sdk.version}</version>
     </dependency>
     <!-- hutool -->
     <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-core</artifactId>
       <version>${hutool.version}</version>
+    </dependency>
+    <!-- junit test-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.2</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
