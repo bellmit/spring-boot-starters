@@ -33,18 +33,5 @@
       <artifactId>tencentcloud-sdk-java</artifactId>
       <version>${tentcentcloud.sdk.version}</version>
     </dependency>
-    <!-- hutool -->
-    <dependency>
-      <groupId>cn.hutool</groupId>
-      <artifactId>hutool-core</artifactId>
-      <version>${hutool.version}</version>
-    </dependency>
-    <!-- junit test-->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.2</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 </project>
