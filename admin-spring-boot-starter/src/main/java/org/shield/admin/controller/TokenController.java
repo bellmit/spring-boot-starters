@@ -2,7 +2,6 @@ package org.shield.admin.controller;
 
 import org.shield.admin.service.TokenService;
 import org.shield.admin.vo.TokenVo;
-import org.shield.captcha.validator.annatation.ValidCaptcha;
 import org.shield.admin.form.PasswordLoginForm;
 import org.shield.admin.form.SmsLoginForm;
 

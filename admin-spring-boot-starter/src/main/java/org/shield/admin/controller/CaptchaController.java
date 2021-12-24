@@ -8,7 +8,6 @@ import org.shield.sms.service.SmsService;
 import org.shield.validation.validator.annotation.Phone;
 import org.shield.captcha.model.Captcha;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
